@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OR.Throwaway", "OR.Throwaway\OR.Throwaway.csproj", "{59E37A10-F183-4D03-9277-4E1923C55672}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OR.Throwaway.Migrations", "OR.Throwaway.Migrations\OR.Throwaway.Migrations.csproj", "{2FF253FB-9314-40D7-A26F-A1F76F729C1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica", "Jamaica\Jamaica.csproj", "{A784CB0E-019E-4269-9668-494524F2BEFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.NHibernate", "Jamaica.NHibernate\Jamaica.NHibernate.csproj", "{EA015153-2237-4800-A463-EBBD7FB202D8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{59E37A10-F183-4D03-9277-4E1923C55672}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E37A10-F183-4D03-9277-4E1923C55672}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E37A10-F183-4D03-9277-4E1923C55672}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E37A10-F183-4D03-9277-4E1923C55672}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF253FB-9314-40D7-A26F-A1F76F729C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF253FB-9314-40D7-A26F-A1F76F729C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF253FB-9314-40D7-A26F-A1F76F729C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF253FB-9314-40D7-A26F-A1F76F729C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A784CB0E-019E-4269-9668-494524F2BEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A784CB0E-019E-4269-9668-494524F2BEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A784CB0E-019E-4269-9668-494524F2BEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A784CB0E-019E-4269-9668-494524F2BEFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA015153-2237-4800-A463-EBBD7FB202D8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA015153-2237-4800-A463-EBBD7FB202D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA015153-2237-4800-A463-EBBD7FB202D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA015153-2237-4800-A463-EBBD7FB202D8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
