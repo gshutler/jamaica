@@ -1,0 +1,4 @@
+﻿<connectionStrings>
+    <clear />
+    <add name="SQLite" connectionString="Data Source=C:\OR.Throwaway\sqlite.db;Version=3;" />
+</connectionStrings>
