@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica", "Jamaica\Jamaica.csproj", "{AE957F64-0845-43B4-A7C3-B4842BC8A153}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.Test", "Jamaica.Test\Jamaica.Test.csproj", "{AC4B2384-7CD6-494C-88C4-2B7057E7865C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.Specifications", "Jamaica.Specifications\Jamaica.Specifications.csproj", "{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
