@@ -29,14 +29,19 @@ namespace Jamaica.Test
         protected abstract void When();
         protected virtual void TidyUp() {}
 
-        protected T Fake<T>()
+        protected T Dependency<T>()
         {
-            return fakeManager.Fake<T>();
+            return fakeManager.Dependency<T>();
+        }
+
+        protected void Inject<T>(T dependency)
+        {
+            fakeManager.Inject(dependency);
         }
 
         protected T Subject<T>()
         {
-            return fakeManager.InjectedObject<T>();
+            return fakeManager.ConstructedObject<T>();
         }
 
         protected void Verify<T>(T actual, IResolveConstraint assertion)

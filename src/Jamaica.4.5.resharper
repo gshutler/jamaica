@@ -24,7 +24,7 @@
       </Template>
     </LiveTemplates>
     <FileTemplates>
-      <Template uid="1bc659d1-ba3d-4e78-8b14-124f4683e749" shortcut="" description="Specification" text="using System;&#xD;&#xA;using Rhino.Mocks;&#xD;&#xA;using Jamaica.Test;&#xD;&#xA;&#xD;&#xA;namespace $Namespace$&#xD;&#xA;{&#xD;&#xA;    public class $Specification$ : Specification&#xD;&#xA;    {&#xD;&#xA;        protected override void Given()&#xD;&#xA;        {&#xD;&#xA;            $END$&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        protected override void When()&#xD;&#xA;        {&#xD;&#xA;            throw new NotImplementedException();&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+      <Template uid="1bc659d1-ba3d-4e78-8b14-124f4683e749" shortcut="" description="Specification" text="using System;&#xD;&#xA;using NUnit.Framework;&#xD;&#xA;using Rhino.Mocks;&#xD;&#xA;using Jamaica.Test;&#xD;&#xA;&#xD;&#xA;namespace $Namespace$&#xD;&#xA;{&#xD;&#xA;    public class $Specification$ : Specification&#xD;&#xA;    {&#xD;&#xA;        protected override void Given()&#xD;&#xA;        {&#xD;&#xA;            $END$&#xD;&#xA;        }&#xD;&#xA;&#xD;&#xA;        protected override void When()&#xD;&#xA;        {&#xD;&#xA;            throw new NotImplementedException();&#xD;&#xA;        }&#xD;&#xA;    }&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
         <Context>
           <ProjectLanguageContext language="CSharp" />
         </Context>

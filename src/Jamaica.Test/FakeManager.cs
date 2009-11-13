@@ -8,25 +8,25 @@ namespace Jamaica.Test
 {
     public class FakeManager
     {
-        readonly IDictionary<Type, object> fakes = new Dictionary<Type, object>();
+        readonly IDictionary<Type, object> dependencies = new Dictionary<Type, object>();
         readonly IDictionary<Type, object> injectedObjects = new Dictionary<Type, object>();
 
-        public T Fake<T>()
+        public T Dependency<T>()
         {
-            return (T) Fake(typeof(T));
+            return (T) Dependency(typeof(T));
         }
 
-        public object Fake(Type fakeType)
+        public object Dependency(Type fakeType)
         {
-            if (!fakes.ContainsKey(fakeType))
+            if (!dependencies.ContainsKey(fakeType))
             {
-                fakes.Add(fakeType, MockRepository.GenerateStub(fakeType));
+                dependencies.Add(fakeType, MockRepository.GenerateStub(fakeType));
             }
 
-            return fakes[fakeType];
+            return dependencies[fakeType];
         }
 
-        public T InjectedObject<T>()
+        public T ConstructedObject<T>()
         {
             var objectType = typeof(T);
 
@@ -45,7 +45,7 @@ namespace Jamaica.Test
 
             foreach (var parameterInfo in constructor.GetParameters())
             {
-                constructorParameters.Add(Fake(parameterInfo.ParameterType));
+                constructorParameters.Add(Dependency(parameterInfo.ParameterType));
             }
 
             return (T) constructor.Invoke(constructorParameters.ToArray());
@@ -56,6 +56,11 @@ namespace Jamaica.Test
             return typeof(T).GetConstructors()
                 .OrderByDescending(x => x.GetParameters().Length)
                 .First();
+        }
+
+        public void Inject<T>(T dependency)
+        {
+            dependencies.Add(typeof(T), dependency);
         }
     }
 }
