@@ -51,10 +51,20 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfiguringCookieAuthentication.cs" />
     <Compile Include="Configuration\RegisteringDependencies.cs" />
+    <Compile Include="Pipeline\Contributors\CookieAuthentication\AuthorizedUser.cs" />
     <Compile Include="Pipeline\Contributors\CookieAuthentication\Initialization.cs" />
+    <Compile Include="Pipeline\Contributors\CookieAuthentication\NoAuthorizedUser.cs" />
     <Compile Include="Pipeline\PipelineGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Configuration\GeneratedResolver.cs" />
+    <Compile Include="Services\CookieAuthentication\AuthorisedUser\BothCookiesSuppliedCorrectHash.cs" />
+    <Compile Include="Services\CookieAuthentication\AuthorisedUser\BothCookiesSuppliedIncorrectHash.cs" />
+    <Compile Include="Services\CookieAuthentication\AuthorisedUser\NoAuthHashCookie.cs" />
+    <Compile Include="Services\CookieAuthentication\AuthorisedUser\NoAuthNameCookie.cs" />
+    <Compile Include="Services\CookieAuthentication\ClearingCookies\AuthHashSupplied.cs" />
+    <Compile Include="Services\CookieAuthentication\ClearingCookies\AuthNameSupplied.cs" />
+    <Compile Include="Services\CookieAuthentication\ClearingCookies\BothSupplied.cs" />
+    <Compile Include="Services\CookieAuthentication\ClearingCookies\NoCookiesSupplied.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jamaica.Test\Jamaica.Test.csproj">

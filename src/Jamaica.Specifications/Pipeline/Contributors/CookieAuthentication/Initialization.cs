@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using Jamaica.Pipeline.Contributors;
+using Jamaica.Services;
 using NUnit.Framework;
 using OpenRasta.DI;
 using OpenRasta.Pipeline;
@@ -14,15 +15,23 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
     public class Initialization : Specification
     {
         IPipeline pipeline;
-        readonly IDependencyResolver resolver = new InternalDependencyResolver();
 
         protected override void Given()
         {
-            resolver.AddDependency<IPipelineContributor, BootstrapperContributor>();
-            resolver.AddDependency<IPipelineContributor, DummyHandlerSelectionContributor>();
-            resolver.AddDependency<IPipelineContributor, CookieAuthenticationContributor>();
+            Dependency<IDependencyResolver>()
+                .Stub(x => x.Resolve<ICookieAuthenticationService>())
+                .Return(Dependency<ICookieAuthenticationService>());
 
-            pipeline = new PipelineRunner(resolver);
+            Dependency<IDependencyResolver>()
+                .Stub(x => x.ResolveAll<IPipelineContributor>())
+                .Return(new IPipelineContributor[]
+                            {
+                                new DummyHandlerSelectionContributor(),
+                                new CookieAuthenticationContributor(Dependency<IDependencyResolver>()),
+                                new BootstrapperContributor()
+                            });
+            
+            pipeline = new PipelineRunner(Dependency<IDependencyResolver>());
         }
 
         protected override void When()
@@ -35,13 +44,6 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
         {
             Verify(IndexOf<CookieAuthenticationContributor>(), 
                 Is.GreaterThan(IndexOf<DummyHandlerSelectionContributor>()));
-        }
-        
-        [Then]
-        public void RegistersTheSetUserMethod()
-        {
-            // check OR core to work out how to test the right method is hooked up
-            Verify(true, Is.False);
         }
 
         int IndexOf<T>() where T : IPipelineContributor
