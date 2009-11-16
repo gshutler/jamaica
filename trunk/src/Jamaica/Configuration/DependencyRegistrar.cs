@@ -1,3 +1,4 @@
+using Jamaica.Pipeline.Contributors;
 using OpenRasta.Configuration;
 using OpenRasta.Pipeline.Contributors;
 
@@ -8,6 +9,8 @@ namespace Jamaica.Configuration
         protected override void RegisterContributors(OpenRasta.DI.IDependencyResolver resolver)
         {
             PipelineContributorTypes.Remove(typeof (DigestAuthorizerContributor));
+
+            PipelineContributorTypes.Add(typeof (PersistenceInitializedContributor));
 
             base.RegisterContributors(resolver);
         }

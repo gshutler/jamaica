@@ -21,7 +21,7 @@ namespace Jamaica.Pipeline.Contributors
         public void Initialize(IPipeline pipelineRunner)
         {
             pipelineRunner.Notify(SetUser)
-                .After<KnownStages.IHandlerSelection>();
+                .After<KnownContributors.IPersistenceInitialized>();
         }
 
         public PipelineContinuation SetUser(ICommunicationContext context)
