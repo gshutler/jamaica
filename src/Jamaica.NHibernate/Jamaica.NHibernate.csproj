@@ -46,7 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\IUsesExtensions.cs" />
-    <Compile Include="Pipeline\Contributors\SessionManagementContributor.cs" />
+    <Compile Include="Pipeline\Contributors\SessionInitializationContributor.cs" />
+    <Compile Include="Pipeline\Contributors\SessionResolutionContributor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>
