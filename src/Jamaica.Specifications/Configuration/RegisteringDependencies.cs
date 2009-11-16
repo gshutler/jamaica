@@ -1,4 +1,5 @@
 using System;
+using Jamaica.Pipeline.Contributors;
 using NUnit.Framework;
 using OpenRasta.DI;
 using OpenRasta.Pipeline;
@@ -27,6 +28,14 @@ namespace Jamaica.Specifications.Configuration
             Verify(
                 resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(DigestAuthorizerContributor)),
                 Is.False);
+        }
+
+        [Then]
+        public void PersistenceInitializationHandleRegistered()
+        {
+            Verify(
+                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(PersistenceInitializedContributor)),
+                Is.True);
         }
     }
 }

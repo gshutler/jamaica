@@ -1,7 +1,8 @@
 using System;
-using Jamaica.Configuration;
-using Jamaica.Pipeline.Contributors;
-using Jamaica.Services;
+using Jamaica.NHibernate.Configuration;
+using Jamaica.NHibernate.Pipeline.Contributors;
+using Jamaica.NHibernate.Repositories;
+using Jamaica.Repositories;
 using NUnit.Framework;
 using OpenRasta.Configuration.Fluent.Implementation;
 using OpenRasta.Configuration.MetaModel;
@@ -10,9 +11,9 @@ using OpenRasta.Pipeline;
 using Rhino.Mocks;
 using Jamaica.Test;
 
-namespace Jamaica.Specifications.Configuration
+namespace Jamaica.NHibernate.Specifications.Configuration
 {
-    public class ConfiguringCookieAuthentication : Specification
+    public class ConfiguringNHibernatePersistence : Specification
     {
         IDependencyResolver resolver;
         IMetaModelRepository metaModel;
@@ -27,22 +28,22 @@ namespace Jamaica.Specifications.Configuration
 
         protected override void When()
         {
-            Subject<FluentTarget>().CookieAuthentication();
+            Subject<FluentTarget>().NHibernatePersistence();
         }
 
         [Then]
-        public void RegistersCookieAuthenticationContributor()
+        public void UserRepositoryImplementationRegistered()
         {
             Verify(
-                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(CookieAuthenticationContributor)), 
+                resolver.HasDependencyImplementation(typeof(IUserRepository), typeof(UserRepository)), 
                 Is.True);
         }
 
         [Then]
-        public void RegistersCookieAuthenticationService()
+        public void SessionManagementContributorRegistered()
         {
             Verify(
-                resolver.HasDependencyImplementation(typeof(ICookieAuthenticationService), typeof(CookieAuthenticationService)),
+                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(SessionManagementContributor)), 
                 Is.True);
         }
     }

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{AE957F64-0845-43B4-A7C3-B4842BC8A153}</ProjectGuid>
+    <ProjectGuid>{FA123068-C158-4F42-BA90-5C94B15EEDA2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Jamaica</RootNamespace>
-    <AssemblyName>Jamaica</AssemblyName>
+    <RootNamespace>Jamaica.NHibernate</RootNamespace>
+    <AssemblyName>Jamaica.NHibernate</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\fluentnhibernate-1.0RTM\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="OpenRasta, Version=2.0.3.0, Culture=neutral, PublicKeyToken=e04bf464d7caae73, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\openrasta-custom\OpenRasta.dll</HintPath>
@@ -41,17 +45,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\DependencyRegistrar.cs" />
-    <Compile Include="Configuration\DependencyResolverAccessor.cs" />
     <Compile Include="Configuration\IUsesExtensions.cs" />
-    <Compile Include="Pipeline\Contributors\CookieAuthenticationContributor.cs" />
-    <Compile Include="Pipeline\Contributors\KnownContributors.cs" />
-    <Compile Include="Pipeline\Contributors\PersistenceInitializedContributor.cs" />
+    <Compile Include="Pipeline\Contributors\SessionManagementContributor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Security\Role.cs" />
-    <Compile Include="Security\User.cs" />
-    <Compile Include="Services\CookieAuthenticationService.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Jamaica\Jamaica.csproj">
+      <Project>{AE957F64-0845-43B4-A7C3-B4842BC8A153}</Project>
+      <Name>Jamaica</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
