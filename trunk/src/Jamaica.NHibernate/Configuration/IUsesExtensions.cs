@@ -11,7 +11,8 @@ namespace Jamaica.NHibernate.Configuration
     {
         public static void NHibernatePersistence(this IUses uses)
         {
-            uses.PipelineContributor<SessionManagementContributor>();
+            uses.PipelineContributor<SessionInitializationContributor>();
+            uses.PipelineContributor<SessionResolutionContributor>();
             uses.Resolver.AddDependency(typeof(IUserRepository), typeof(UserRepository), DependencyLifetime.Transient);
         }
     }

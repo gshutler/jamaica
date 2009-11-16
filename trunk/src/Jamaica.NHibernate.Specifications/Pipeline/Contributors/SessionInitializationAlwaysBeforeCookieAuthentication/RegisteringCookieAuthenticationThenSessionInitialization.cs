@@ -10,9 +10,9 @@ using OpenRasta.Pipeline.Contributors;
 using Rhino.Mocks;
 using Jamaica.Test;
 
-namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionManagement
+namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionInitializationAlwaysBeforeCookieAuthentication
 {
-    public class WhenPipelineInitialized : Specification
+    public class RegisteringCookieAuthenticationThenSessionInitialization : Specification
     {
         IPipeline pipeline;
 
@@ -22,9 +22,10 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionManagem
                 .Stub(x => x.ResolveAll<IPipelineContributor>())
                 .Return(new IPipelineContributor[]
                             {
-                                new SessionManagementContributor(),
                                 new PersistenceInitializedContributor(),
                                 new DummyHandlerSelectionContributor(),
+                                new CookieAuthenticationContributor(Dependency<IDependencyResolver>()),
+                                Subject<SessionInitializationContributor>(),
                                 new BootstrapperContributor()
                             });
 
@@ -37,11 +38,11 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionManagem
         }
 
         [Then]
-        public void BeforePersistenceInitialized()
+        public void SessionManagementComesBeforeCookieAuthentication()
         {
             Verify(
-                pipeline.IndexOf<SessionManagementContributor>(), 
-                Is.LessThan(pipeline.IndexOf<KnownContributors.IPersistenceInitialized>()));
+                pipeline.IndexOf<SessionInitializationContributor>(), 
+                Is.LessThan(pipeline.IndexOf<CookieAuthenticationContributor>()));
         }
     }
 }

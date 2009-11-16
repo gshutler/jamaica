@@ -40,10 +40,18 @@ namespace Jamaica.NHibernate.Specifications.Configuration
         }
 
         [Then]
-        public void SessionManagementContributorRegistered()
+        public void SessionInitializationContributorRegistered()
         {
             Verify(
-                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(SessionManagementContributor)), 
+                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(SessionInitializationContributor)), 
+                Is.True);
+        }
+
+        [Then]
+        public void SessionResolutionContributorRegistered()
+        {
+            Verify(
+                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(SessionResolutionContributor)),
                 Is.True);
         }
     }

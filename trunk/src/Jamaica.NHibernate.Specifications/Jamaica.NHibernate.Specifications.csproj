@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\fluentnhibernate-1.0RTM\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\nunit-2.5.0.9122\nunit.framework.dll</HintPath>
@@ -50,8 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfiguringNHibernatePersistence.cs" />
-    <Compile Include="Pipeline\Contributors\SessionManagementAlwaysBeforeCookieAuthentication\RegisteringCookieAuthenticationThenSessionManagement.cs" />
-    <Compile Include="Pipeline\Contributors\SessionManagement\WhenPipelineInitialized.cs" />
+    <Compile Include="Pipeline\Contributors\SessionInitializationAlwaysBeforeCookieAuthentication\RegisteringCookieAuthenticationThenSessionInitialization.cs" />
+    <Compile Include="Pipeline\Contributors\SessionInitialization\AfterPipelineInitialized.cs" />
+    <Compile Include="Pipeline\Contributors\SessionInitialization\InitializingSession.cs" />
+    <Compile Include="Pipeline\Contributors\SessionResolution\AfterPipelineInitialized.cs" />
+    <Compile Include="Pipeline\Contributors\SessionResolution\ResolvingSessionWhenTransactionCommitted.cs" />
+    <Compile Include="Pipeline\Contributors\SessionResolution\ResolvingSessionWhenTransactionOpen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
