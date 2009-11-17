@@ -7,8 +7,10 @@ namespace Jamaica.Security
     {
         public static readonly User Anonymous = new User {Username = "Anonymous"};
 
-        public string Username { get; protected set; }
-        public IList<Role> Roles { get; protected set; }
+        public virtual int Id { get; protected set; }
+        public virtual string Username { get; protected set; }
+        public virtual string Hash { get; protected set; }
+        public virtual IList<Role> Roles { get; protected set; }
 
         protected User()
         {
@@ -20,9 +22,32 @@ namespace Jamaica.Security
             Username = username;
         }
 
-        public void AddRole(Role role)
+        public virtual void AddRole(Role role)
         {
             Roles.Add(role);
+        }
+
+        public virtual void SetPassword(string password)
+        {
+            Hash = password;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            /* not a user */
+            if (!typeof(User).IsAssignableFrom(obj.GetType())) return false;
+            /* are the same object */
+            if (ReferenceEquals(obj, this)) return true;
+            /* this object isn't saved */
+            if (Id == 0) return false;
+            /* have the same id */
+            return Id == ((User) obj).Id;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id;
         }
     }
 }

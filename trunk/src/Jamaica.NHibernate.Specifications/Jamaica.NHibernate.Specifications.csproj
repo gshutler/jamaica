@@ -31,9 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=1.0.0.593, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\fluentnhibernate-1.0RTM\FluentNHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fluentnhibernate-1.0RTM\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\fluentnhibernate-1.0RTM\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -51,9 +59,17 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite, Version=1.0.48.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\lib\SQLite\System.Data.SQLite.DLL</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ConfiguringNHibernatePersistence.cs" />
+    <Compile Include="IntegrationSpecification.cs" />
+    <Compile Include="Mapping\RoleMap.cs" />
+    <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Pipeline\Contributors\SessionInitializationAlwaysBeforeCookieAuthentication\RegisteringCookieAuthenticationThenSessionInitialization.cs" />
     <Compile Include="Pipeline\Contributors\SessionInitialization\AfterPipelineInitialized.cs" />
     <Compile Include="Pipeline\Contributors\SessionInitialization\InitializingSession.cs" />
@@ -61,6 +77,9 @@
     <Compile Include="Pipeline\Contributors\SessionResolution\ResolvingSessionWhenTransactionCommitted.cs" />
     <Compile Include="Pipeline\Contributors\SessionResolution\ResolvingSessionWhenTransactionOpen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Users\WhenUserDoesNotExist.cs" />
+    <Compile Include="Repositories\Users\WhenUserExistsAndCorrectHash.cs" />
+    <Compile Include="Repositories\Users\WhenUserExistsButHashWrong.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jamaica.NHibernate\Jamaica.NHibernate.csproj">
