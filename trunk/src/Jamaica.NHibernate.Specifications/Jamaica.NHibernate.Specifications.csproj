@@ -68,8 +68,6 @@
   <ItemGroup>
     <Compile Include="Configuration\ConfiguringNHibernatePersistence.cs" />
     <Compile Include="IntegrationSpecification.cs" />
-    <Compile Include="Mapping\RoleMap.cs" />
-    <Compile Include="Mapping\UserMap.cs" />
     <Compile Include="Pipeline\Contributors\SessionInitializationAlwaysBeforeCookieAuthentication\RegisteringCookieAuthenticationThenSessionInitialization.cs" />
     <Compile Include="Pipeline\Contributors\SessionInitialization\AfterPipelineInitialized.cs" />
     <Compile Include="Pipeline\Contributors\SessionInitialization\InitializingSession.cs" />

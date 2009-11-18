@@ -1,7 +1,7 @@
 using FluentNHibernate.Mapping;
 using Jamaica.Security;
 
-namespace Jamaica.NHibernate.Specifications.Mapping
+namespace Jamaica.NHibernate.Mapping
 {
     public class RoleMap : ClassMap<Role>
     {

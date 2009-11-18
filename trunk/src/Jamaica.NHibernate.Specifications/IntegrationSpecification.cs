@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
+using Jamaica.NHibernate.Mapping;
 using Jamaica.Test;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
@@ -26,7 +27,7 @@ namespace Jamaica.NHibernate.Specifications
         {
             session = sessionFactory.OpenSession();
             new SchemaExport(configuration).Execute(true, true, false, session.Connection, null);
-            Inject(session);
+            InjectDependency(session);
         }
 
         protected override void TidyUp()
@@ -38,7 +39,7 @@ namespace Jamaica.NHibernate.Specifications
         {
             var fluentConfiguration = Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.ShowSql().InMemory)
-                .Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly()));
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>());
                 
             configuration = fluentConfiguration.BuildConfiguration();
             sessionFactory = configuration.BuildSessionFactory();

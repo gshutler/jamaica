@@ -49,6 +49,7 @@
     <Compile Include="Pipeline\Contributors\PersistenceInitializedContributor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Security\Cryptography.cs" />
     <Compile Include="Security\Role.cs" />
     <Compile Include="Security\User.cs" />
     <Compile Include="Services\CookieAuthenticationService.cs" />

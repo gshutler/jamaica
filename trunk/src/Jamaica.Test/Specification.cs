@@ -34,9 +34,9 @@ namespace Jamaica.Test
             return fakeManager.Dependency<T>();
         }
 
-        protected void Inject<T>(T dependency)
+        protected void InjectDependency<T>(T dependency)
         {
-            fakeManager.Inject(dependency);
+            fakeManager.InjectDependency(dependency);
         }
 
         protected T Subject<T>()
