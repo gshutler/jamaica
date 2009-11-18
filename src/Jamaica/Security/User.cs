@@ -9,6 +9,7 @@ namespace Jamaica.Security
 
         public virtual int Id { get; protected set; }
         public virtual string Username { get; protected set; }
+        public virtual string Salt { get; protected set; }
         public virtual string Hash { get; protected set; }
         public virtual IList<Role> Roles { get; protected set; }
 
@@ -29,7 +30,8 @@ namespace Jamaica.Security
 
         public virtual void SetPassword(string password)
         {
-            Hash = password;
+            Salt = Cryptography.GenerateHexSaltString();
+            Hash = (password + Salt).GenerateHexHashString();
         }
 
         public override bool Equals(object obj)

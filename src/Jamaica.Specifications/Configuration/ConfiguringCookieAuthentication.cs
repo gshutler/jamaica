@@ -21,8 +21,8 @@ namespace Jamaica.Specifications.Configuration
         {
             resolver = new InternalDependencyResolver();
             metaModel = new MetaModelRepository(resolver);
-            Inject(resolver);
-            Inject(metaModel);
+            InjectDependency(resolver);
+            InjectDependency(metaModel);
         }
 
         protected override void When()

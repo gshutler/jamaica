@@ -1,7 +1,7 @@
 using FluentNHibernate.Mapping;
 using Jamaica.Security;
 
-namespace Jamaica.NHibernate.Specifications.Mapping
+namespace Jamaica.NHibernate.Mapping
 {
     public class UserMap : ClassMap<User>
     {
@@ -9,8 +9,9 @@ namespace Jamaica.NHibernate.Specifications.Mapping
         {
             Id(user => user.Id);
             Map(user => user.Username);
+            Map(user => user.Salt);
             Map(user => user.Hash);
-            HasMany(user => user.Roles);
+            HasManyToMany(user => user.Roles).Cascade.SaveUpdate();
         }
     }
 }

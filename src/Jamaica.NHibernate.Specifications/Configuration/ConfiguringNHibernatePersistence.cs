@@ -16,14 +16,11 @@ namespace Jamaica.NHibernate.Specifications.Configuration
     public class ConfiguringNHibernatePersistence : Specification
     {
         IDependencyResolver resolver;
-        IMetaModelRepository metaModel;
 
         protected override void Given()
         {
-            resolver = new InternalDependencyResolver();
-            metaModel = new MetaModelRepository(resolver);
-            Inject(resolver);
-            Inject(metaModel);
+            InjectDependency(resolver = new InternalDependencyResolver());
+            InjectDependency(new MetaModelRepository(resolver));
         }
 
         protected override void When()

@@ -58,7 +58,7 @@ namespace Jamaica.Test
                 .First();
         }
 
-        public void Inject<T>(T dependency)
+        public void InjectDependency<T>(T dependency)
         {
             dependencies.Add(typeof(T), dependency);
         }
