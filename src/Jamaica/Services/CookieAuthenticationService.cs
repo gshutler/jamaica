@@ -9,6 +9,11 @@ namespace Jamaica.Services
     {
         User AuthorizedUser();
         void ClearCookies();
+        // todo : add a way to set authentication cookies
+        // this will mean that by implementing this interface
+        // you can change how authentication is persisted 
+        // between the server and client via cookies
+        // void SetAuthorizedUser(User user);
     }
 
     public class CookieAuthenticationService : ICookieAuthenticationService
