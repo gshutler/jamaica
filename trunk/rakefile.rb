@@ -8,7 +8,7 @@ namespace :build do
 	Albacore::MSBuildTask.new(:debug) do |msb|
 		outdir = File.join(PROJECT_ROOT, "build/debug/")
 	  msb.properties = {:configuration => :Debug, :OutDir => outdir}
-	  msb.targets [:Clean, :Build]
+	  msb.targets [:Clean, :Rebuild]
 	  msb.solution = "src/Jamaica.sln"
 	end
 	
@@ -16,8 +16,8 @@ namespace :build do
 	Albacore::MSBuildTask.new(:release) do |msb|
 		outdir = File.join(PROJECT_ROOT, "build/release/")
 	  msb.properties = {:configuration => :Release, :OutDir => outdir}
-	  msb.targets [:Clean, :Build]
-	  msb.solution = "src/Jamaica.sln"
+	  msb.targets [:Clean, :Rebuild]
+	  msb.solution = "src/Jamaica.NHibernate/Jamaica.NHibernate.csproj"
 	end
 	
 end
