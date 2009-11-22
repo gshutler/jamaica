@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Jamaica.Security
 {
@@ -11,7 +12,7 @@ namespace Jamaica.Security
         public virtual string Username { get; protected set; }
         public virtual string Salt { get; protected set; }
         public virtual string Hash { get; protected set; }
-        public virtual IList<Role> Roles { get; protected set; }
+        public virtual IList<Role> Roles { get; set; }
 
         protected User()
         {
@@ -32,6 +33,16 @@ namespace Jamaica.Security
         {
             Salt = Cryptography.GenerateHexSaltString();
             Hash = (password + Salt).GenerateHexHashString();
+        }
+
+        public virtual bool VerifyPassword(string suppliedPassword)
+        {
+            return Hash == (suppliedPassword + Salt).GenerateHexHashString();
+        }
+
+        public virtual string[] GetRoleNames()
+        {
+            return Roles.Select(role => role.Name).ToArray();
         }
 
         public override bool Equals(object obj)

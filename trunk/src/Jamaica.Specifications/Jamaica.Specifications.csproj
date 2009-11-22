@@ -60,6 +60,8 @@
     <Compile Include="Configuration\GeneratedResolver.cs" />
     <Compile Include="Security\Users\ChangingPassword.cs" />
     <Compile Include="Security\Users\SettingPassword.cs" />
+    <Compile Include="Security\Users\VerifyingAnIncorrectPassword.cs" />
+    <Compile Include="Security\Users\VerifyingCorrectPassword.cs" />
     <Compile Include="Services\CookieAuthentication\AuthorisedUser\BothCookiesSuppliedCorrectHash.cs" />
     <Compile Include="Services\CookieAuthentication\AuthorisedUser\BothCookiesSuppliedIncorrectHash.cs" />
     <Compile Include="Services\CookieAuthentication\AuthorisedUser\NoAuthHashCookie.cs" />

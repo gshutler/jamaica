@@ -45,7 +45,7 @@ namespace Jamaica.Pipeline.Contributors
         static IPrincipal CreateSecurityPrincipal(User user)
         {
             var identity = new GenericIdentity(user.Username);
-            var roles = user.Roles.Select(role => role.Name).ToArray();
+            var roles = user.GetRoleNames();
 
             return new GenericPrincipal(identity, roles);
         }
