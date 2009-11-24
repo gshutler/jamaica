@@ -7,8 +7,7 @@ namespace Jamaica.NHibernate.Mapping
     {
         public RoleMap()
         {
-            Id(role => role.Id);
-            Map(role => role.Name);
+            Id(role => role.Name).GeneratedBy.Assigned();
         }
     }
 }

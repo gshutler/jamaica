@@ -7,8 +7,7 @@ namespace Jamaica.NHibernate.Mapping
     {
         public UserMap()
         {
-            Id(user => user.Id);
-            Map(user => user.Username);
+            Id(user => user.Name).GeneratedBy.Assigned();
             Map(user => user.Salt);
             Map(user => user.Hash);
             HasManyToMany(user => user.Roles).Cascade.SaveUpdate();

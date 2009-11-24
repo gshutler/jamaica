@@ -5,11 +5,11 @@ using Jamaica.Test;
 using NUnit.Framework;
 using Rhino.Mocks;
 
-namespace Jamaica.NHibernate.Specifications.Repositories.Users
+namespace Jamaica.NHibernate.Specifications.Repositories.SecurityPrincipals
 {
     public class WhenUserDoesNotExist : IntegrationSpecification
     {
-        User user;
+        ISecurityPrincipal securityPrincipal;
 
         protected override void Given()
         {
@@ -17,13 +17,13 @@ namespace Jamaica.NHibernate.Specifications.Repositories.Users
 
         protected override void When()
         {
-            user = Subject<UserRepository>().GetByUsernameAndHash("not_exist", "does_not_matter");
+            securityPrincipal = Subject<SecurityPrincipalRepository>().GetByNameAndHash("not_exist", "does_not_matter");
         }
 
         [Then]
-        public void UserIsNull()
+        public void SecurityPrincipalIsNull()
         {
-            Verify(user, Is.Null);
+            Verify(securityPrincipal, Is.Null);
         }
     }
 }

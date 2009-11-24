@@ -13,7 +13,7 @@ namespace Jamaica.NHibernate.Configuration
         {
             uses.PipelineContributor<SessionInitializationContributor>();
             uses.PipelineContributor<SessionResolutionContributor>();
-            uses.Resolver.AddDependency(typeof(IUserRepository), typeof(UserRepository), DependencyLifetime.Transient);
+            uses.Resolver.AddDependency(typeof(ISecurityPrincipalRepository), typeof(SecurityPrincipalRepository), DependencyLifetime.Transient);
         }
     }
 }

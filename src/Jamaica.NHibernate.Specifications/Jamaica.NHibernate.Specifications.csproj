@@ -75,9 +75,9 @@
     <Compile Include="Pipeline\Contributors\SessionResolution\ResolvingSessionWhenTransactionCommitted.cs" />
     <Compile Include="Pipeline\Contributors\SessionResolution\ResolvingSessionWhenTransactionOpen.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\Users\WhenUserDoesNotExist.cs" />
-    <Compile Include="Repositories\Users\WhenUserExistsAndCorrectHash.cs" />
-    <Compile Include="Repositories\Users\WhenUserExistsButHashWrong.cs" />
+    <Compile Include="Repositories\SecurityPrincipals\WhenUserDoesNotExist.cs" />
+    <Compile Include="Repositories\SecurityPrincipals\WhenUserExistsAndCorrectHash.cs" />
+    <Compile Include="Repositories\SecurityPrincipals\WhenUserExistsButHashWrong.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jamaica.NHibernate\Jamaica.NHibernate.csproj">

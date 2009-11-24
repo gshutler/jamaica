@@ -6,6 +6,7 @@ using Jamaica.TableFootball.Handlers;
 using Jamaica.TableFootball.Resources;
 using Jamaica.Configuration;
 using OpenRasta.DI;
+using OpenRasta.Diagnostics;
 
 namespace Jamaica.TableFootball
 {
@@ -16,8 +17,7 @@ namespace Jamaica.TableFootball
             using (OpenRastaConfiguration.Manual)
             {
                 ResourceSpace.Uses.Resolver
-                    .AddDependencyInstance<ISessionFactory>(
-                        Core.NHibernate.CreateSessionFactory(), DependencyLifetime.Singleton);
+                    .AddDependencyInstance<ISessionFactory>(Core.NHibernate.CreateSessionFactory(), DependencyLifetime.Singleton);
 
                 ResourceSpace.Uses.CookieAuthentication();
                 ResourceSpace.Uses.NHibernatePersistence();
@@ -27,7 +27,10 @@ namespace Jamaica.TableFootball
                     .And.AtUri("/")
                     .HandledBy<HomeHandler>()
                     .RenderedByAspx("~/Views/HomeView.aspx");
-
+                
+                var log = ResourceSpace.Uses.Resolver.Resolve<ILogger>();
+                var migrator = new Core.Migrations.Runner(log);
+                migrator.MigrateDatabaseToLatestVersion();
             }
         }
     }
