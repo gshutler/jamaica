@@ -39,6 +39,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\build\release\Jamaica.NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="Migrator, Version=0.9.0.28138, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\migratordotnet-0.8.0\lib\Migrator.dll</HintPath>
+    </Reference>
+    <Reference Include="Migrator.Framework, Version=0.9.0.26940, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\migratordotnet-0.8.0\lib\Migrator.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\build\release\NHibernate.dll</HintPath>
@@ -48,6 +56,7 @@
       <HintPath>..\..\..\..\lib\openrasta-custom\OpenRasta.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -55,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Handler.cs" />
+    <Compile Include="Migrations\Runner.cs" />
     <Compile Include="UserRegistration\UserRegistrationHandler.cs" />
     <Compile Include="NHibernate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

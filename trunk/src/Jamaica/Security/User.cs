@@ -4,15 +4,19 @@ using System.Linq;
 
 namespace Jamaica.Security
 {
-    public class User
+    public class User : ISecurityPrincipal
     {
-        public static readonly User Anonymous = new User {Username = "Anonymous"};
+        public static readonly User Anonymous = new User("Anonymous");
 
-        public virtual int Id { get; protected set; }
-        public virtual string Username { get; protected set; }
+        public virtual string Name { get; protected set; }
         public virtual string Salt { get; protected set; }
         public virtual string Hash { get; protected set; }
         public virtual IList<Role> Roles { get; set; }
+
+        IEnumerable<ISecurityRole> ISecurityPrincipal.Roles
+        {
+            get { return Roles.Cast<ISecurityRole>(); }
+        }
 
         protected User()
         {
@@ -21,7 +25,7 @@ namespace Jamaica.Security
 
         public User(string username) : this()
         {
-            Username = username;
+            Name = username;
         }
 
         public virtual void AddRole(Role role)
@@ -40,11 +44,6 @@ namespace Jamaica.Security
             return Hash == (suppliedPassword + Salt).GenerateHexHashString();
         }
 
-        public virtual string[] GetRoleNames()
-        {
-            return Roles.Select(role => role.Name).ToArray();
-        }
-
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
@@ -52,15 +51,13 @@ namespace Jamaica.Security
             if (!typeof(User).IsAssignableFrom(obj.GetType())) return false;
             /* are the same object */
             if (ReferenceEquals(obj, this)) return true;
-            /* this object isn't saved */
-            if (Id == 0) return false;
-            /* have the same id */
-            return Id == ((User) obj).Id;
+            /* have the same name */
+            return Name == ((User) obj).Name;
         }
 
         public override int GetHashCode()
         {
-            return Id;
+            return Name.GetHashCode();
         }
     }
 }

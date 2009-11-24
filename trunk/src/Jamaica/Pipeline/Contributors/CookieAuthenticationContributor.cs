@@ -20,16 +20,16 @@ namespace Jamaica.Pipeline.Contributors
 
         public void Initialize(IPipeline pipelineRunner)
         {
-            pipelineRunner.Notify(SetUser)
+            pipelineRunner.Notify(SetSecurityPrincipal)
                 .After<KnownContributors.IPersistenceInitialized>();
         }
 
-        public PipelineContinuation SetUser(ICommunicationContext context)
+        public PipelineContinuation SetSecurityPrincipal(ICommunicationContext context)
         {
             var cookieAuth = resolver.Resolve<ICookieAuthenticationService>();
 
-            var authorizedUser = cookieAuth.AuthorizedUser();
-            resolver.AddDependencyInstance<User>(authorizedUser);
+            var authorizedUser = cookieAuth.AuthorizedSecurityPrincipal();
+            resolver.AddDependencyInstance<ISecurityPrincipal>(authorizedUser);
 
             if (authorizedUser != User.Anonymous)
             {
@@ -42,10 +42,10 @@ namespace Jamaica.Pipeline.Contributors
             return PipelineContinuation.Continue;
         }
 
-        static IPrincipal CreateSecurityPrincipal(User user)
+        static IPrincipal CreateSecurityPrincipal(ISecurityPrincipal securityPrincipal)
         {
-            var identity = new GenericIdentity(user.Username);
-            var roles = user.GetRoleNames();
+            var identity = new GenericIdentity(securityPrincipal.Name);
+            var roles = securityPrincipal.Roles.Select(role => role.Name).ToArray();
 
             return new GenericPrincipal(identity, roles);
         }

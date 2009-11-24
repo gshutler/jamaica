@@ -11,7 +11,7 @@ using Jamaica.Test;
 
 namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
 {
-    public class NoAuthorizedUser : Specification
+    public class NoAuthorizedSecurityPrincipal : Specification
     {
         PipelineContinuation continuation;
 
@@ -22,13 +22,13 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
                 .Return(Dependency<ICookieAuthenticationService>());
 
             Dependency<ICookieAuthenticationService>()
-                .Stub(x => x.AuthorizedUser())
+                .Stub(x => x.AuthorizedSecurityPrincipal())
                 .Return(User.Anonymous);
         }
 
         protected override void When()
         {
-            continuation = Subject<CookieAuthenticationContributor>().SetUser(Dependency<ICommunicationContext>());
+            continuation = Subject<CookieAuthenticationContributor>().SetSecurityPrincipal(Dependency<ICommunicationContext>());
         }
 
         [Then]
@@ -38,14 +38,14 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
         }
 
         [Then]
-        public void AnonymousUserIsRegistered()
+        public void AnonymousUserIsRegisteredAsSecurityPrincipal()
         {
             Dependency<IDependencyResolver>()
-                .AssertWasCalled(x => x.AddDependencyInstance<User>(User.Anonymous));
+                .AssertWasCalled(x => x.AddDependencyInstance<ISecurityPrincipal>(User.Anonymous));
         }
 
         [Then]
-        public void AuthorizedUserIsNotSet()
+        public void ContextUserIsNotSet()
         {
             Verify(Dependency<ICommunicationContext>().User, Is.Null);
         }

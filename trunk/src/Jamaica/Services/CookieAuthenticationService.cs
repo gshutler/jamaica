@@ -7,13 +7,16 @@ namespace Jamaica.Services
 {
     public interface ICookieAuthenticationService
     {
-        User AuthorizedUser();
+        /// <summary>
+        /// Retrieves the security principal authorized by the request's cookies.
+        /// </summary>
+        /// <returns>
+        /// Authorized security principal, if one exists a static "anonymous" instance.
+        /// Should never return null.
+        /// </returns>
+        ISecurityPrincipal AuthorizedSecurityPrincipal();
+        void AuthorizeSecurityPrincipal(ISecurityPrincipal securityPrincipal);
         void ClearCookies();
-        // todo : add a way to set authentication cookies
-        // this will mean that by implementing this interface
-        // you can change how authentication is persisted 
-        // between the server and client via cookies
-        // void SetAuthorizedUser(User user);
     }
 
     public class CookieAuthenticationService : ICookieAuthenticationService
@@ -22,25 +25,22 @@ namespace Jamaica.Services
         const string AuthHash = "__authHash";
 
         readonly IRequest request;
-        readonly IUserRepository userRepository;
+        readonly ISecurityPrincipalRepository securityPrincipalRepository;
         readonly IResponse response;
 
-        public CookieAuthenticationService(IRequest request, IUserRepository userRepository, IResponse response)
+        public CookieAuthenticationService(IRequest request, ISecurityPrincipalRepository securityPrincipalRepository, IResponse response)
         {
             this.request = request;
             this.response = response;
-            this.userRepository = userRepository;
+            this.securityPrincipalRepository = securityPrincipalRepository;
         }
 
-        public User AuthorizedUser()
+        public ISecurityPrincipal AuthorizedSecurityPrincipal()
         {
-            if (request.Cookies.Exists(AuthName) && request.Cookies.Exists(AuthHash))
+            if (BothAuthenticationCookiesArePresent())
             {
-                return userRepository.GetByUsernameAndHash(
-                           request.Cookies.Get(AuthName), request.Cookies.Get(AuthHash))
-                    ?? User.Anonymous;
+                return SecurityPrincipalMatchingAuthenticationCookies() ?? User.Anonymous;
             }
-
             return User.Anonymous;
         }
 
@@ -48,6 +48,22 @@ namespace Jamaica.Services
         {
             RemoveCookieIfSupplied(AuthName);
             RemoveCookieIfSupplied(AuthHash);
+        }
+
+        public void AuthorizeSecurityPrincipal(ISecurityPrincipal securityPrincipal)
+        {
+            response.Cookies.Add(new ResponseCookie(AuthName, securityPrincipal.Name) {Path = "/"});
+            response.Cookies.Add(new ResponseCookie(AuthHash, securityPrincipal.Hash) { Path = "/" });
+        }
+
+        bool BothAuthenticationCookiesArePresent()
+        {
+            return request.Cookies.Exists(AuthName) && request.Cookies.Exists(AuthHash);
+        }
+
+        ISecurityPrincipal SecurityPrincipalMatchingAuthenticationCookies()
+        {
+            return securityPrincipalRepository.GetByNameAndHash(request.Cookies.Get(AuthName), request.Cookies.Get(AuthHash));
         }
 
         void RemoveCookieIfSupplied(string cookieName)

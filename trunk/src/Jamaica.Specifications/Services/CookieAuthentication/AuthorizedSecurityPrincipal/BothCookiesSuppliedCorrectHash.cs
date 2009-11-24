@@ -8,12 +8,12 @@ using OpenRasta.Web;
 using Rhino.Mocks;
 using Jamaica.Test;
 
-namespace Jamaica.Specifications.Services.CookieAuthentication.AuthorisedUser
+namespace Jamaica.Specifications.Services.CookieAuthentication.AuthorizedSecurityPrincipal
 {
     public class BothCookiesSuppliedCorrectHash : Specification
     {
         readonly User user = new User("userName");
-        User authorizedUser;
+        ISecurityPrincipal authorizedUser;
 
         protected override void Given()
         {
@@ -26,18 +26,18 @@ namespace Jamaica.Specifications.Services.CookieAuthentication.AuthorisedUser
                 .Stub(x => x.Cookies)
                 .Return(cookies);
 
-            Dependency<IUserRepository>()
-                .Stub(x => x.GetByUsernameAndHash("userName", "good_hash"))
+            Dependency<ISecurityPrincipalRepository>()
+                .Stub(x => x.GetByNameAndHash("userName", "good_hash"))
                 .Return(user);
         }
 
         protected override void When()
         {
-            authorizedUser = Subject<CookieAuthenticationService>().AuthorizedUser();
+            authorizedUser = Subject<CookieAuthenticationService>().AuthorizedSecurityPrincipal();
         }
 
         [Then]
-        public void UserIsAuthorizedUser()
+        public void SecurityPrincipalIsAuthorizedUser()
         {
             Verify(authorizedUser, Is.SameAs(user));
         }

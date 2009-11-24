@@ -29,10 +29,10 @@ namespace Jamaica.NHibernate.Specifications.Configuration
         }
 
         [Then]
-        public void UserRepositoryImplementationRegistered()
+        public void SecurityPrincipalRepositoryImplementationRegistered()
         {
             Verify(
-                resolver.HasDependencyImplementation(typeof(IUserRepository), typeof(UserRepository)), 
+                resolver.HasDependencyImplementation(typeof(ISecurityPrincipalRepository), typeof(SecurityPrincipalRepository)), 
                 Is.True);
         }
 

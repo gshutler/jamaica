@@ -5,22 +5,22 @@ using NUnit.Framework;
 using Rhino.Mocks;
 using Jamaica.Test;
 
-namespace Jamaica.NHibernate.Specifications.Repositories.Users
+namespace Jamaica.NHibernate.Specifications.Repositories.SecurityPrincipals
 {
     public class WhenUserExistsAndCorrectHash : IntegrationSpecification
     {
-        User newUser;
         User user;
+        ISecurityPrincipal securityPrincipal;
 
         protected override void Given()
         {
             using (var transaction = session.BeginTransaction())
             {
-                newUser = new User("NathanTyson");
+                user = new User("NathanTyson");
 
-                newUser.SetPassword("forest");
+                user.SetPassword("forest");
 
-                session.Save(newUser);
+                session.Save(user);
                 transaction.Commit();
             }
 
@@ -29,13 +29,13 @@ namespace Jamaica.NHibernate.Specifications.Repositories.Users
 
         protected override void When()
         {
-            user = Subject<UserRepository>().GetByUsernameAndHash(newUser.Username, newUser.Hash);
+            securityPrincipal = Subject<SecurityPrincipalRepository>().GetByNameAndHash(user.Name, user.Hash);
         }
 
         [Then]
-        public void UserReturned()
+        public void UserReturnedAsSecurityPrincipal()
         {
-            Verify(user, Is.EqualTo(newUser));
+            Verify(securityPrincipal, Is.EqualTo(user));
         }
     }
 }
