@@ -4,6 +4,9 @@ PROJECT_ROOT = File.dirname(__FILE__)
 
 namespace :build do
 
+	desc "Create debug and release builds"
+	task :all => [:debug, :release]
+
 	desc "Create a debug build"
 	Albacore::MSBuildTask.new(:debug) do |msb|
 		outdir = File.join(PROJECT_ROOT, "build/debug/")

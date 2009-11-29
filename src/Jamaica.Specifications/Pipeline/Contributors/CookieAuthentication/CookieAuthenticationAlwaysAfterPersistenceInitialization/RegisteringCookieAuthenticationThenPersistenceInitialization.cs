@@ -13,33 +13,24 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication.Cook
 {
     public class RegisteringCookieAuthenticationThenPersistenceInitialization : Specification
     {
-        IPipeline pipeline;
-
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.ResolveAll<IPipelineContributor>())
-                .Return(new IPipelineContributor[]
-                            {
-                                new DummyHandlerSelectionContributor(),
-                                new CookieAuthenticationContributor(Dependency<IDependencyResolver>()),
-                                new PersistenceInitializedContributor(),
-                                new BootstrapperContributor()
-                            });
-            
-            pipeline = new PipelineRunner(Dependency<IDependencyResolver>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyHandlerSelectionContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(Subject<CookieAuthenticationContributor>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new PersistenceInitializedContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new BootstrapperContributor());
         }
 
         protected override void When()
         {
-            pipeline.Initialize();
+            Subject<PipelineRunner>().Initialize();
         }
 
         [Then]
         public void CookieAuthenticationAfterPersistenceInitialization()
         {
-            Verify(pipeline.IndexOf<CookieAuthenticationContributor>(), 
-                   Is.GreaterThan(pipeline.IndexOf<KnownContributors.IPersistenceInitialized>()));
+            Verify(Subject<PipelineRunner>().IndexOf<CookieAuthenticationContributor>(),
+                   Is.GreaterThan(Subject<PipelineRunner>().IndexOf<KnownContributors.IPersistenceInitialized>()));
         }
     }
 }

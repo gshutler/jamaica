@@ -1,3 +1,4 @@
+using System;
 using OpenRasta.Web;
 
 namespace Jamaica.TableFootball.Core
@@ -17,6 +18,21 @@ namespace Jamaica.TableFootball.Core
         protected OperationResult.BadRequest BadRequest(object responseResource)
         {
             return new OperationResult.BadRequest {ResponseResource = responseResource};
+        }
+
+        protected OperationResult.SeeOther SeeOther(Uri redirectLocation)
+        {
+            return new OperationResult.SeeOther {RedirectLocation = redirectLocation};
+        }
+
+        protected OperationResult.SeeOther SeeOther<T>()
+        {
+            return SeeOther(typeof(T).CreateUri());
+        }
+
+        protected OperationResult.SeeOther SeeOther(object resource)
+        {
+            return SeeOther(resource.CreateUri());
         }
     }
 }

@@ -1,12 +1,12 @@
 using System;
-using Jamaica.TableFootball.Core.UserRegistration;
+using Jamaica.TableFootball.Core.Authentication.UserRegistration;
 using NUnit.Framework;
 using OpenRasta.Web;
 using Jamaica.Test;
 
-namespace Jamaica.TableFootball.Specifications.UserRegistration
+namespace Jamaica.TableFootball.Specifications.Authentication.UserRegistration
 {
-    public class SubmittingRegistrationDetailsWithoutAUsername : Specification
+    public class RegistrationDetailsAreMissingAName : Specification
     {
         UserRegistrationResource userRegistrationResource;
         OperationResult result;
@@ -15,7 +15,7 @@ namespace Jamaica.TableFootball.Specifications.UserRegistration
         {
             userRegistrationResource = new UserRegistrationResource
                                            {
-                                               Username = "",
+                                               Name = "",
                                                Password = "password",
                                                PasswordConfirmation = "password"
                                            };
@@ -39,15 +39,15 @@ namespace Jamaica.TableFootball.Specifications.UserRegistration
         }
 
         [Then]
-        public void UsernameErrorAttached()
+        public void NameErrorAttached()
         {
-            Verify(userRegistrationResource.UsernameError, Is.True);
+            Verify(userRegistrationResource.NameError, Is.True);
         }
 
         [Then]
-        public void UsernameErrorMessageAttached()
+        public void NameErrorMessageAttached()
         {
-            Verify(userRegistrationResource.UsernameErrorMessage, Is.EqualTo("Required"));
+            Verify(userRegistrationResource.NameErrorMessage, Is.EqualTo("Required"));
         }
     }
 }

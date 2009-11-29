@@ -14,34 +14,25 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionInitial
 {
     public class AfterPipelineInitialized : Specification
     {
-        IPipeline pipeline;
-
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.ResolveAll<IPipelineContributor>())
-                .Return(new IPipelineContributor[]
-                            {
-                                Subject<SessionInitializationContributor>(),
-                                new PersistenceInitializedContributor(),
-                                new DummyHandlerSelectionContributor(),
-                                new BootstrapperContributor()
-                            });
-
-            pipeline = new PipelineRunner(Dependency<IDependencyResolver>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(Subject<SessionInitializationContributor>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new PersistenceInitializedContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyHandlerSelectionContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new BootstrapperContributor());
         }
 
         protected override void When()
         {
-            pipeline.Initialize();
+            Subject<PipelineRunner>().Initialize();
         }
 
         [Then]
         public void BeforePersistenceInitialized()
         {
             Verify(
-                pipeline.IndexOf<SessionInitializationContributor>(),
-                Is.LessThan(pipeline.IndexOf<KnownContributors.IPersistenceInitialized>()));
+                Subject<PipelineRunner>().IndexOf<SessionInitializationContributor>(),
+                Is.LessThan(Subject<PipelineRunner>().IndexOf<KnownContributors.IPersistenceInitialized>()));
         }
     }
 }

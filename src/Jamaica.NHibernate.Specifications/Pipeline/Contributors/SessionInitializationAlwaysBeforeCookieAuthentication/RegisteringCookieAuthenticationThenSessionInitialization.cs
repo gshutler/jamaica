@@ -14,35 +14,26 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionInitial
 {
     public class RegisteringCookieAuthenticationThenSessionInitialization : Specification
     {
-        IPipeline pipeline;
-
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.ResolveAll<IPipelineContributor>())
-                .Return(new IPipelineContributor[]
-                            {
-                                new PersistenceInitializedContributor(),
-                                new DummyHandlerSelectionContributor(),
-                                new CookieAuthenticationContributor(Dependency<IDependencyResolver>()),
-                                Subject<SessionInitializationContributor>(),
-                                new BootstrapperContributor()
-                            });
-
-            pipeline = new PipelineRunner(Dependency<IDependencyResolver>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new PersistenceInitializedContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyHandlerSelectionContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(Subject<CookieAuthenticationContributor>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(Subject<SessionInitializationContributor>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new BootstrapperContributor());
         }
 
         protected override void When()
         {
-            pipeline.Initialize();
+            Subject<PipelineRunner>().Initialize();
         }
 
         [Then]
         public void SessionManagementComesBeforeCookieAuthentication()
         {
             Verify(
-                pipeline.IndexOf<SessionInitializationContributor>(), 
-                Is.LessThan(pipeline.IndexOf<CookieAuthenticationContributor>()));
+                Subject<PipelineRunner>().IndexOf<SessionInitializationContributor>(), 
+                Is.LessThan(Subject<PipelineRunner>().IndexOf<CookieAuthenticationContributor>()));
         }
     }
 }

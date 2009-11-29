@@ -90,14 +90,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="Views\Authentication\Login.aspx" />
+    <Content Include="Views\Authentication\UserRegistration.aspx" />
     <Content Include="Views\HomeView.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration.cs" />
-    <Compile Include="Handlers\HomeHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\HomeResource.cs" />
+    <Compile Include="XhtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Views\HomeView.Master" />
@@ -128,8 +129,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>56789</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/Jamaica.TableFootball</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

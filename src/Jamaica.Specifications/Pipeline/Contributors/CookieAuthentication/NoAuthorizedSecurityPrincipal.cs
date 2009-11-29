@@ -17,9 +17,7 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
 
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.Resolve<ICookieAuthenticationService>())
-                .Return(Dependency<ICookieAuthenticationService>());
+            AddDependencyToResolver<ICookieAuthenticationService>();
 
             Dependency<ICookieAuthenticationService>()
                 .Stub(x => x.AuthorizedSecurityPrincipal())
@@ -40,8 +38,7 @@ namespace Jamaica.Specifications.Pipeline.Contributors.CookieAuthentication
         [Then]
         public void AnonymousUserIsRegisteredAsSecurityPrincipal()
         {
-            Dependency<IDependencyResolver>()
-                .AssertWasCalled(x => x.AddDependencyInstance<ISecurityPrincipal>(User.Anonymous));
+            Verify(Resolver.Resolve<ISecurityPrincipal>(), Is.SameAs(User.Anonymous));
         }
 
         [Then]
