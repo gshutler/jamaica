@@ -16,9 +16,7 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionResolut
 
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.Resolve<ISession>())
-                .Return(Dependency<ISession>());
+            AddDependencyToResolver<ISession>();
 
             Dependency<ISession>()
                 .Stub(x => x.Transaction)

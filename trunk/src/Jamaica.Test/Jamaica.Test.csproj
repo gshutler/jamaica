@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="FakeManager.cs" />
     <Compile Include="Pipeline\Contributors\DummyHandlerSelectionContributor.cs" />
+    <Compile Include="Pipeline\Contributors\DummyCodecResponseSelectionContributor.cs" />
     <Compile Include="Pipeline\Contributors\DummyResponseCodingContributor.cs" />
     <Compile Include="Pipeline\IPipelineExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

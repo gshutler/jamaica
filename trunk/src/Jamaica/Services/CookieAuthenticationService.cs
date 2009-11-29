@@ -53,7 +53,7 @@ namespace Jamaica.Services
         public void AuthorizeSecurityPrincipal(ISecurityPrincipal securityPrincipal)
         {
             response.Cookies.Add(new ResponseCookie(AuthName, securityPrincipal.Name) {Path = "/"});
-            response.Cookies.Add(new ResponseCookie(AuthHash, securityPrincipal.Hash) { Path = "/" });
+            response.Cookies.Add(new ResponseCookie(AuthHash, securityPrincipal.Hash) {Path = "/"});
         }
 
         bool BothAuthenticationCookiesArePresent()

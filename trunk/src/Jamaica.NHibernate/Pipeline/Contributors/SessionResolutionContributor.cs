@@ -18,7 +18,8 @@ namespace Jamaica.NHibernate.Pipeline.Contributors
         public void Initialize(IPipeline pipelineRunner)
         {
             pipelineRunner.Notify(ResolveSession)
-                .Before<KnownStages.IResponseCoding>();
+                .After<KnownStages.ICodecResponseSelection>()
+                .And.Before<KnownStages.IResponseCoding>();
         }
 
         public PipelineContinuation ResolveSession(ICommunicationContext context)

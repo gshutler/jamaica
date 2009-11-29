@@ -3,6 +3,7 @@ using Jamaica.NHibernate.Pipeline.Contributors;
 using NHibernate;
 using NUnit.Framework;
 using OpenRasta.DI;
+using OpenRasta.DI.Internal;
 using OpenRasta.Pipeline;
 using OpenRasta.Web;
 using Rhino.Mocks;
@@ -16,10 +17,8 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionInitial
 
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.Resolve<ISessionFactory>())
-                .Return(Dependency<ISessionFactory>());
-
+            AddDependencyToResolver<ISessionFactory>();
+            
             Dependency<ISessionFactory>()
                 .Stub(x => x.OpenSession())
                 .Return(Dependency<ISession>());
@@ -39,8 +38,11 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionInitial
         [Then]
         public void SessionRegistered()
         {
-            Dependency<IDependencyResolver>()
-                .AssertWasCalled(x => x.AddDependencyInstance<ISession>(Dependency<ISession>(), DependencyLifetime.PerRequest));
+            var registration = Resolver.Registrations.GetRegistrationForService(typeof(ISession));
+
+            Verify(registration.IsInstanceRegistration, Is.True);
+            Verify(registration.LifetimeManager, Is.InstanceOf(typeof(PerRequestLifetimeManager)));
+            Verify(Resolver.Resolve<ISession>(), Is.SameAs(Dependency<ISession>()));
         }
 
         [Then]

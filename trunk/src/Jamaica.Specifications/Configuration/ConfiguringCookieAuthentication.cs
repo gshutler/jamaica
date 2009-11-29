@@ -5,7 +5,6 @@ using Jamaica.Services;
 using NUnit.Framework;
 using OpenRasta.Configuration.Fluent.Implementation;
 using OpenRasta.Configuration.MetaModel;
-using OpenRasta.DI;
 using OpenRasta.Pipeline;
 using Rhino.Mocks;
 using Jamaica.Test;
@@ -14,15 +13,9 @@ namespace Jamaica.Specifications.Configuration
 {
     public class ConfiguringCookieAuthentication : Specification
     {
-        IDependencyResolver resolver;
-        IMetaModelRepository metaModel;
-
         protected override void Given()
         {
-            resolver = new InternalDependencyResolver();
-            metaModel = new MetaModelRepository(resolver);
-            InjectDependency(resolver);
-            InjectDependency(metaModel);
+            InjectDependency(new MetaModelRepository(Resolver));
         }
 
         protected override void When()
@@ -34,7 +27,7 @@ namespace Jamaica.Specifications.Configuration
         public void RegistersCookieAuthenticationContributor()
         {
             Verify(
-                resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(CookieAuthenticationContributor)), 
+                Resolver.HasDependencyImplementation(typeof(IPipelineContributor), typeof(CookieAuthenticationContributor)), 
                 Is.True);
         }
 
@@ -42,7 +35,7 @@ namespace Jamaica.Specifications.Configuration
         public void RegistersCookieAuthenticationService()
         {
             Verify(
-                resolver.HasDependencyImplementation(typeof(ICookieAuthenticationService), typeof(CookieAuthenticationService)),
+                Resolver.HasDependencyImplementation(typeof(ICookieAuthenticationService), typeof(CookieAuthenticationService)),
                 Is.True);
         }
     }

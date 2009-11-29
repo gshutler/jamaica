@@ -14,33 +14,34 @@ namespace Jamaica.NHibernate.Specifications.Pipeline.Contributors.SessionResolut
 {
     public class AfterPipelineInitialized : Specification
     {
-        IPipeline pipeline;
-
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.ResolveAll<IPipelineContributor>())
-                .Return(new IPipelineContributor[]
-                            {
-                                new DummyResponseCodingContributor(),
-                                Subject<SessionResolutionContributor>(),
-                                new BootstrapperContributor()
-                            });
-
-            pipeline = new PipelineRunner(Dependency<IDependencyResolver>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyHandlerSelectionContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyResponseCodingContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyCodecResponseSelectionContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(Subject<SessionResolutionContributor>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new BootstrapperContributor());
         }
 
         protected override void When()
         {
-            pipeline.Initialize();
+            Subject<PipelineRunner>().Initialize();
         }
 
         [Then]
-        public void BeforePersistenceInitialized()
+        public void BeforeResponseCoding()
         {
             Verify(
-                pipeline.IndexOf<SessionResolutionContributor>(),
-                Is.LessThan(pipeline.IndexOf<KnownStages.IResponseCoding>()));
+                Subject<PipelineRunner>().IndexOf<SessionResolutionContributor>(),
+                Is.LessThan(Subject<PipelineRunner>().IndexOf<KnownStages.IResponseCoding>()));
+        }
+
+        [Then]
+        public void AfterCodecResponseSelection()
+        {
+            Verify(
+                Subject<PipelineRunner>().IndexOf<SessionResolutionContributor>(),
+                Is.GreaterThan(Subject<PipelineRunner>().IndexOf<KnownStages.ICodecResponseSelection>()));
         }
     }
 }

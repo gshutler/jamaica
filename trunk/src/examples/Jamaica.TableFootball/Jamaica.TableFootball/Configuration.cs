@@ -1,9 +1,10 @@
 using System;
 using Jamaica.NHibernate.Configuration;
+using Jamaica.TableFootball.Core.Authentication.Login;
+using Jamaica.TableFootball.Core.Authentication.UserRegistration;
+using Jamaica.TableFootball.Core.Home;
 using NHibernate;
 using OpenRasta.Configuration;
-using Jamaica.TableFootball.Handlers;
-using Jamaica.TableFootball.Resources;
 using Jamaica.Configuration;
 using OpenRasta.DI;
 using OpenRasta.Diagnostics;
@@ -27,11 +28,26 @@ namespace Jamaica.TableFootball
                     .And.AtUri("/")
                     .HandledBy<HomeHandler>()
                     .RenderedByAspx("~/Views/HomeView.aspx");
-                
-                var log = ResourceSpace.Uses.Resolver.Resolve<ILogger>();
-                var migrator = new Core.Migrations.Runner(log);
-                migrator.MigrateDatabaseToLatestVersion();
+
+                ResourceSpace.Has.ResourcesOfType<UserRegistrationResource>()
+                    .AtUri("/registration")
+                    .HandledBy<UserRegistrationHandler>()
+                    .RenderedByAspx("~/Views/Authentication/UserRegistration.aspx");
+
+                ResourceSpace.Has.ResourcesOfType<LoginResource>()
+                    .AtUri("/login")
+                    .HandledBy<LoginHandler>()
+                    .RenderedByAspx("~/Views/Authentication/Login.aspx");
             }
+
+            MigrateDatabaseToLatestVersion();
+        }
+
+        static void MigrateDatabaseToLatestVersion()
+        {
+            var log = DependencyManager.GetService<ILogger>();
+            var migrator = new Core.Migrations.Runner(log);
+            migrator.MigrateDatabaseToLatestVersion();
         }
     }
 

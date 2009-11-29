@@ -1,4 +1,3 @@
-using System.Configuration;
 using System.Reflection;
 using Migrator.Framework.Loggers;
 using OpenRasta.Diagnostics;
@@ -16,7 +15,7 @@ namespace Jamaica.TableFootball.Core.Migrations
 
         public void MigrateDatabaseToLatestVersion()
         {
-            var runner = new Migrator.Migrator("SQLite", ConfigurationManager.ConnectionStrings["SQLite"].ConnectionString, Assembly.GetExecutingAssembly())
+            var runner = new Migrator.Migrator("SQLite", NHibernate.ConnectionString(), Assembly.GetExecutingAssembly())
                              {
                                  Logger = new Logger(true, new[] {new OpenRastaLogWriter(log)})
                              };

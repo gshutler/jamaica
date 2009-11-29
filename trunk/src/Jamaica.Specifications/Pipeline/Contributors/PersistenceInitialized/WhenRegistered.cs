@@ -13,32 +13,23 @@ namespace Jamaica.Specifications.Pipeline.Contributors.PersistenceInitialized
 {
     public class WhenRegistered : Specification
     {
-        IPipeline pipeline;
-
         protected override void Given()
         {
-            Dependency<IDependencyResolver>()
-                .Stub(x => x.ResolveAll<IPipelineContributor>())
-                .Return(new IPipelineContributor[]
-                            {
-                                new PersistenceInitializedContributor(),
-                                new DummyHandlerSelectionContributor(),
-                                new BootstrapperContributor()
-                            });
-
-            pipeline = new PipelineRunner(Dependency<IDependencyResolver>());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new PersistenceInitializedContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new DummyHandlerSelectionContributor());
+            Resolver.AddDependencyInstance<IPipelineContributor>(new BootstrapperContributor());
         }
 
         protected override void When()
         {
-            pipeline.Initialize();
+            Subject<PipelineRunner>().Initialize();
         }
         
         [Then]
         public void AfterHandlerSelection()
         {
-            Verify(pipeline.IndexOf<KnownContributors.IPersistenceInitialized>(),
-                   Is.GreaterThan(pipeline.IndexOf<DummyHandlerSelectionContributor>()));
+            Verify(Subject<PipelineRunner>().IndexOf<KnownContributors.IPersistenceInitialized>(),
+                   Is.GreaterThan(Subject<PipelineRunner>().IndexOf<DummyHandlerSelectionContributor>()));
         }
     }
 }

@@ -1,10 +1,10 @@
 using System;
-using Jamaica.TableFootball.Core.UserRegistration;
+using Jamaica.TableFootball.Core.Authentication.UserRegistration;
 using NUnit.Framework;
 using OpenRasta.Web;
 using Jamaica.Test;
 
-namespace Jamaica.TableFootball.Specifications.UserRegistration
+namespace Jamaica.TableFootball.Specifications.Authentication.UserRegistration
 {
     public class WantToRegisterANewUser : Specification
     {
@@ -32,9 +32,9 @@ namespace Jamaica.TableFootball.Specifications.UserRegistration
         }
 
         [Then]
-        public void UserRegistrationResourceHasNoUsername()
+        public void UserRegistrationResourceHasNoName()
         {
-            Verify(result.ResponseResource.As<UserRegistrationResource>().Username.IsNullOrEmpty(), Is.True);
+            Verify(result.ResponseResource.As<UserRegistrationResource>().Name.IsNullOrEmpty(), Is.True);
         }
 
         [Then]
