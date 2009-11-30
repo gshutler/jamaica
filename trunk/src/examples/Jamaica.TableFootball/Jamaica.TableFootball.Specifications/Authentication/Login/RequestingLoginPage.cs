@@ -29,8 +29,8 @@ namespace Jamaica.TableFootball.Specifications.Authentication.Login
         [Then]
         public void ResourceEmptyLoginResource()
         {
-            Verify(result.ResponseResource.As<LoginResource>().Name.IsNullOrEmpty(), Is.True);
-            Verify(result.ResponseResource.As<LoginResource>().Password.IsNullOrEmpty(), Is.True);
+            Verify(result.Response<LoginResource>().Name.IsNullOrEmpty(), Is.True);
+            Verify(result.Response<LoginResource>().Password.IsNullOrEmpty(), Is.True);
         }
     }
 }

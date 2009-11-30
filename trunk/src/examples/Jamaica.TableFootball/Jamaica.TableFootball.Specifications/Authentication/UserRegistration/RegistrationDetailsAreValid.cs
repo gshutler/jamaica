@@ -56,7 +56,7 @@ namespace Jamaica.TableFootball.Specifications.Authentication.UserRegistration
                 x => x.AuthorizeSecurityPrincipal(UserCreatedFromRegistrationResource()));
         }
 
-        static User UserCreatedFromRegistrationResource()
+        static ISecurityPrincipal UserCreatedFromRegistrationResource()
         {
             return Arg<User>
                 .Matches(user =>
