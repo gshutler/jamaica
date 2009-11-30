@@ -6,10 +6,12 @@
         input.focus(function() {
             label.hide();
         });
-        input.blur(function() {
+        var hideWarkmarkIfValueEntered = function() {
             if (!input.val()) {
                 label.show();
             }
-        });
+        }
+        input.blur(hideWarkmarkIfValueEntered);
+        hideWarkmarkIfValueEntered();
     });
 });
