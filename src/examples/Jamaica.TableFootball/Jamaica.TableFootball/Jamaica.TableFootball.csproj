@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="Script\jquery-1.3.2.min.js" />
+    <Content Include="Script\site.js" />
     <Content Include="Style\site.css" />
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\UserRegistration.aspx" />

@@ -11,16 +11,16 @@
             <li>Welcome <strong><%= Resource.SecurityPrincipal.Name %></strong></li>
             <li><%= Xhtml.Link<LogoutResource>()["Log out"] %></li>
         <% } else { %>
-            <li class="loginForm">
+            <li class="smallLoginForm">
                 <% using (scope(Xhtml.Form<LoginResource>().ID("loginForm").Method("post"))) { %>
                 
-                    <div class="formElement">
+                    <div class="formElement watermark">
                         <label for="loginName">Name</label>
                         <%= Xhtml.TextBox<LoginResource>(user => user.Name)
                             .ID("loginName") %>
                     </div>
                     
-                    <div class="formElement">    
+                    <div class="formElement watermark">    
                         <label for="loginPassword">Password</label>
                         <%= Xhtml.Password<LoginResource>(user => user.Password)
                             .ID("loginPassword") %>
