@@ -73,6 +73,8 @@
   <ItemGroup>
     <Compile Include="Authentication\Login\LoginHandler.cs" />
     <Compile Include="Authentication\Login\LoginResource.cs" />
+    <Compile Include="Authentication\Logout\LogoutHandler.cs" />
+    <Compile Include="Authentication\Logout\LogoutResource.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Handler.cs" />
     <Compile Include="Home\HomeHandler.cs" />

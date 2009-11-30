@@ -1,6 +1,7 @@
 using System;
 using Jamaica.NHibernate.Configuration;
 using Jamaica.TableFootball.Core.Authentication.Login;
+using Jamaica.TableFootball.Core.Authentication.Logout;
 using Jamaica.TableFootball.Core.Authentication.UserRegistration;
 using Jamaica.TableFootball.Core.Home;
 using NHibernate;
@@ -24,8 +25,7 @@ namespace Jamaica.TableFootball
                 ResourceSpace.Uses.NHibernatePersistence();
 
                 ResourceSpace.Has.ResourcesOfType<HomeResource>()
-                    .AtUri("/home")
-                    .And.AtUri("/")
+                    .AtUri("/home").And.AtUri("/")
                     .HandledBy<HomeHandler>()
                     .RenderedByAspx("~/Views/HomeView.aspx");
 
@@ -38,6 +38,10 @@ namespace Jamaica.TableFootball
                     .AtUri("/login")
                     .HandledBy<LoginHandler>()
                     .RenderedByAspx("~/Views/Authentication/Login.aspx");
+
+                ResourceSpace.Has.ResourcesOfType<LogoutResource>()
+                    .AtUri("/logout")
+                    .HandledBy<LogoutHandler>();
             }
 
             MigrateDatabaseToLatestVersion();

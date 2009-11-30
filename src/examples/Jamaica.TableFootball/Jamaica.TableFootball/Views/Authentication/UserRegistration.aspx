@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Inherits="OpenRasta.Codecs.WebForms.ResourceView<UserRegistrationResource>" MasterPageFile="~/Views/HomeView.Master" %>
 
-<asp:Content ContentPlaceHolderID="ContentPlaceHolder1" ID="content" runat="server">
+<asp:Content ContentPlaceHolderID="MainContent" ID="content" runat="server">
     <h1>Registration</h1>
     <div class="formWrapper registrationForm">
     
@@ -37,7 +37,7 @@
             </div>
             
             <div class="formElement formSubmission">
-                <input type="submit" value="Register" />
+                <input type="submit" class="submit" value="Register" />
             </div>
             
         <% } %>

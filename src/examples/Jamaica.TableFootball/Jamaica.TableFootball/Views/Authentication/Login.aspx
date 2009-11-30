@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" Inherits="OpenRasta.Codecs.WebForms.ResourceView<LoginResource>" MasterPageFile="~/Views/HomeView.Master" %>
 
-<asp:Content ID="content" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="content" ContentPlaceHolderID="MainContent" runat="server">
     <h1>Log in</h1>
     <div class="formWrapper loginForm">
     
@@ -25,7 +25,7 @@
             </div>
             
             <div class="formElement formSubmission">
-                <input type="submit" value="Log in" />
+                <input type="submit" class="submit" value="Log in" />
             </div>
             
         <% } %>

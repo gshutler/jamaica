@@ -34,19 +34,19 @@ namespace Jamaica.TableFootball.Specifications.Authentication.UserRegistration
         [Then]
         public void UserRegistrationResourceHasNoName()
         {
-            Verify(result.ResponseResource.As<UserRegistrationResource>().Name.IsNullOrEmpty(), Is.True);
+            Verify(result.Response<UserRegistrationResource>().Name.IsNullOrEmpty(), Is.True);
         }
 
         [Then]
         public void UserRegistrationResourceHasNoPassword()
         {
-            Verify(result.ResponseResource.As<UserRegistrationResource>().Password.IsNullOrEmpty(), Is.True);
+            Verify(result.Response<UserRegistrationResource>().Password.IsNullOrEmpty(), Is.True);
         }
 
         [Then]
         public void UserRegistrationResourceHasNoPasswordConfirmation()
         {
-            Verify(result.ResponseResource.As<UserRegistrationResource>().PasswordConfirmation.IsNullOrEmpty(), Is.True);
+            Verify(result.Response<UserRegistrationResource>().PasswordConfirmation.IsNullOrEmpty(), Is.True);
         }
     }
 }

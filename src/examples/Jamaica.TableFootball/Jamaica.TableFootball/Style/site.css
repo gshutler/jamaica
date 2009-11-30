@@ -1,0 +1,12 @@
+﻿* { margin: 0; padding: 0; }
+body { font-family: Tahoma; font-size: 0.625em; line-height: 1.2em; margin: 1em; }
+p, label { font-size: 1.2em; }
+h1, h2, h3, h4, h5 { font-family: Georgia; font-weight: bold; }
+h1 { font-size: 2em; margin: 1em 0; }
+h2 { font-size: 1.6em; margin: 0.5em 0; }
+h3 { font-size: 1.2em; margin: 0.2em 0; }
+p { margin-bottom: 0.4em; }
+div.formElement { margin-bottom: 1em; }
+div.formElement label { display: inline-block; margin-right: 4px; text-align: right; width: 60px; }
+div.formSubmission { margin-left: 64px; }
+input.submit { width: 60px; }

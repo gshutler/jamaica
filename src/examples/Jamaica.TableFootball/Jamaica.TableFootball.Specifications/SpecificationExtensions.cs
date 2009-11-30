@@ -1,10 +1,12 @@
+using OpenRasta.Web;
+
 namespace Jamaica.TableFootball.Specifications
 {
     public static class SpecificationExtensions
     {
-        public static T As<T>(this object obj) where T : class
+        public static T Response<T>(this OperationResult operationResult) where T : class
         {
-            return obj as T;
+            return (T) operationResult.ResponseResource;
         }
 
         public static bool IsNullOrEmpty(this string value)
