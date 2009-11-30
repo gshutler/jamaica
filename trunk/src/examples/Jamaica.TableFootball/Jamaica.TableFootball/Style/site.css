@@ -1,12 +1,31 @@
-﻿* { margin: 0; padding: 0; }
+﻿/* reset */
+* { margin: 0; padding: 0; }
+
+/* standard styles */
 body { font-family: Tahoma; font-size: 0.625em; line-height: 1.2em; margin: 1em; }
-p, label { font-size: 1.2em; }
+p, label, a, li, strong, span { font-size: 1.2em; }
 h1, h2, h3, h4, h5 { font-family: Georgia; font-weight: bold; }
 h1 { font-size: 2em; margin: 1em 0; }
 h2 { font-size: 1.6em; margin: 0.5em 0; }
 h3 { font-size: 1.2em; margin: 0.2em 0; }
 p { margin-bottom: 0.4em; }
-div.formElement { margin-bottom: 1em; }
-div.formElement label { display: inline-block; margin-right: 4px; text-align: right; width: 60px; }
+li { margin-left: 20px; margin-bottom: 6px; }
+
+/* form layout */
+div.formElement { margin-bottom: 8px; }
+div.formElement input { border-color: #888; border-style: solid; border-width: 1px; margin: 1px; padding: 1px; outline: none; }
+div.formElement input:focus { border-width: 2px; margin: 0; }
+div.formElement input.error { border-color: Red; }
+div.formElement label { display: block; float: left; margin-right: 4px; margin-top: 4px; text-align: right; width: 60px; }
+div.formElement label.error { display: inline; float: none; text-align: left; color: Red; }
 div.formSubmission { margin-left: 64px; }
 input.submit { width: 60px; }
+
+/* form watermark */
+div.formElement.watermark { position: relative; }
+div.formElement.watermark label { position: absolute; left: 4px; top: -4px; width: auto; color: #999; }
+div.formElement.watermark input { width: 100px; }
+div.formElement.watermark input:focus { background-color: #fff; }
+
+/* home login form */
+.smallLoginForm div.formElement { display: inline; margin-right: 4px; position: relative; }
