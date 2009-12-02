@@ -1,9 +1,9 @@
 using System;
 using System.IO;
-using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Jamaica.NHibernate.Mapping;
+using Jamaica.TableFootball.Core.Mappings;
 using NHibernate;
 
 namespace Jamaica.TableFootball.Core
@@ -22,7 +22,7 @@ namespace Jamaica.TableFootball.Core
                 .Database(SQLiteConfiguration.Standard.ConnectionString(ConnectionString()))
                 .Mappings(m => m.FluentMappings
                     .AddFromAssemblyOf<UserMap>()
-                    .AddFromAssembly(Assembly.GetExecutingAssembly()))
+                    .AddFromAssemblyOf<ParticipantMap>())
                 .BuildSessionFactory();
         }
     }

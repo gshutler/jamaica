@@ -79,14 +79,29 @@
     <Compile Include="Handler.cs" />
     <Compile Include="Home\HomeHandler.cs" />
     <Compile Include="Home\HomeResource.cs" />
+    <Compile Include="Mappings\MatchResultMap.cs" />
+    <Compile Include="Mappings\ParticipantMap.cs" />
+    <Compile Include="MatchResult.cs" />
     <Compile Include="Migrations\002_Roles.cs" />
     <Compile Include="Migrations\003_RoleToUser.cs" />
+    <Compile Include="Migrations\004_Participant.cs" />
+    <Compile Include="Migrations\005_MatchResult.cs" />
+    <Compile Include="Migrations\006_MatchResultDate.cs" />
     <Compile Include="Migrations\Runner.cs" />
     <Compile Include="Authentication\UserRegistration\UserRegistrationHandler.cs" />
     <Compile Include="Migrations\001_User.cs" />
     <Compile Include="NHibernate.cs" />
+    <Compile Include="Participant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\UserRegistration\UserRegistrationResource.cs" />
+    <Compile Include="Recording\VictoryRecording\VictoryRecordingHandler.cs" />
+    <Compile Include="Recording\VictoryRecording\VictoryRecordingResource.cs" />
+    <Compile Include="Recording\ScoringSelectListService.cs" />
+    <Compile Include="Reporting\ResultReportingService.cs" />
+    <Compile Include="Reporting\UserRecentResult.cs" />
+    <Compile Include="Xhtml\SelectList.cs" />
+    <Compile Include="Xhtml\SelectListExtensions.cs" />
+    <Compile Include="Xhtml\SelectListItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

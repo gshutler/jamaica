@@ -1,6 +1,7 @@
 using System;
 using Jamaica.Security;
 using Jamaica.TableFootball.Core.Home;
+using Jamaica.TableFootball.Core.Reporting;
 using NUnit.Framework;
 using OpenRasta.Web;
 using Rhino.Mocks;
@@ -15,6 +16,10 @@ namespace Jamaica.TableFootball.Specifications.Home
         protected override void Given()
         {
             InjectDependency<ISecurityPrincipal>(User.Anonymous);
+
+            Dependency<IResultReportingService>()
+                .Stub(x => x.RecentResults(Arg<ISecurityPrincipal>.Is.Anything))
+                .Throw(new InvalidOperationException("Shouldn't be called for anonymous user"));
         }
 
         protected override void When()
@@ -38,6 +43,12 @@ namespace Jamaica.TableFootball.Specifications.Home
         public void SecurityPrincipalIsAnonymousUser()
         {
             Verify(result.Response<HomeResource>().SecurityPrincipal, Is.SameAs(User.Anonymous));
+        }
+
+        [Then]
+        public void NoRecentResultsRetrieved()
+        {
+            Verify(result.Response<HomeResource>().RecentResults, Is.Null);
         }
     }
 }

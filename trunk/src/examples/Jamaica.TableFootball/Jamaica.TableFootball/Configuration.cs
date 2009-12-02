@@ -4,6 +4,9 @@ using Jamaica.TableFootball.Core.Authentication.Login;
 using Jamaica.TableFootball.Core.Authentication.Logout;
 using Jamaica.TableFootball.Core.Authentication.UserRegistration;
 using Jamaica.TableFootball.Core.Home;
+using Jamaica.TableFootball.Core.Recording;
+using Jamaica.TableFootball.Core.Recording.VictoryRecording;
+using Jamaica.TableFootball.Core.Reporting;
 using NHibernate;
 using OpenRasta.Configuration;
 using Jamaica.Configuration;
@@ -24,6 +27,12 @@ namespace Jamaica.TableFootball
                 ResourceSpace.Uses.CookieAuthentication();
                 ResourceSpace.Uses.NHibernatePersistence();
 
+                ResourceSpace.Uses
+                    .CustomDependency<IScoringSelectListService, ScoringSelectListService>(DependencyLifetime.Transient);
+
+                ResourceSpace.Uses
+                    .CustomDependency<IResultReportingService, ResultReportingService>(DependencyLifetime.Transient);
+
                 ResourceSpace.Has.ResourcesOfType<HomeResource>()
                     .AtUri("/home").And.AtUri("/")
                     .HandledBy<HomeHandler>()
@@ -42,6 +51,11 @@ namespace Jamaica.TableFootball
                 ResourceSpace.Has.ResourcesOfType<LogoutResource>()
                     .AtUri("/logout")
                     .HandledBy<LogoutHandler>();
+
+                ResourceSpace.Has.ResourcesOfType<VictoryRecordingResource>()
+                    .AtUri("/record/victory")
+                    .HandledBy<VictoryRecordingHandler>()
+                    .RenderedByAspx("~/Views/Recording/VictoryRecording.aspx");
             }
 
             MigrateDatabaseToLatestVersion();

@@ -2,6 +2,7 @@ using System;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using Jamaica.NHibernate.Mapping;
+using Jamaica.TableFootball.Core.Mappings;
 using Jamaica.Test;
 using NHibernate;
 using NHibernate.Tool.hbm2ddl;
@@ -38,7 +39,9 @@ namespace Jamaica.TableFootball.Specifications
         {
             var fluentConfiguration = Fluently.Configure()
                 .Database(SQLiteConfiguration.Standard.ShowSql().InMemory)
-                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<UserMap>());
+                .Mappings(m => m.FluentMappings
+                    .AddFromAssemblyOf<UserMap>()
+                    .AddFromAssemblyOf<ParticipantMap>());
 
             configuration = fluentConfiguration.BuildConfiguration();
             sessionFactory = configuration.BuildSessionFactory();
