@@ -14,4 +14,11 @@
         input.blur(hideWarkmarkIfValueEntered);
         hideWarkmarkIfValueEntered();
     });
+
+    var toggleFocusClass = function() {
+        $(this).toggleClass("focus");
+    };
+
+    $("input").focus(toggleFocusClass).blur(toggleFocusClass);
+    $("select").focus(toggleFocusClass).blur(toggleFocusClass);
 });

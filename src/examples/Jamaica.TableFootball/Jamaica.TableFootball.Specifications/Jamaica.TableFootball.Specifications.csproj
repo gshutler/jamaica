@@ -51,6 +51,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\build\release\NHibernate.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\lib\fluentnhibernate-1.0RTM\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.0.9122, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\lib\nunit-2.5.0.9122\nunit.framework.dll</HintPath>
@@ -84,6 +88,14 @@
     <Compile Include="Authentication\UserRegistration\RegistrationDetailsAreMissingAPassword.cs" />
     <Compile Include="Authentication\UserRegistration\RegistrationDetailsAreMissingAName.cs" />
     <Compile Include="Authentication\UserRegistration\WantToRegisterANewUser.cs" />
+    <Compile Include="RecordingScores\RecordingAVictory\NoOpponentSelected.cs" />
+    <Compile Include="RecordingScores\RecordingAVictory\NoScoreSelectedForTheOpponent.cs" />
+    <Compile Include="RecordingScores\RecordingAVictory\RequestingAForm.cs" />
+    <Compile Include="RecordingScores\RecordingAVictory\ValidSubmission.cs" />
+    <Compile Include="RecordingScores\ScoringSelectLists\MatchDateList.cs" />
+    <Compile Include="RecordingScores\ScoringSelectLists\OpponentList.cs" />
+    <Compile Include="RecordingScores\ScoringSelectLists\ScoreSelectList.cs" />
+    <Compile Include="Reporting\Results\RecentResultsForAUser.cs" />
     <Compile Include="SpecificationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

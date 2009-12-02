@@ -96,6 +96,7 @@
     <Content Include="Views\Authentication\Login.aspx" />
     <Content Include="Views\Authentication\UserRegistration.aspx" />
     <Content Include="Views\HomeView.aspx" />
+    <Content Include="Views\Recording\VictoryRecording.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

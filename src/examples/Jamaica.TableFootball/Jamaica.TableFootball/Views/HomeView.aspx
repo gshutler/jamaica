@@ -5,11 +5,12 @@
     <div>
     
         <h1>Home</h1>
-        
+                
         <ul>
         <% if (Resource.Authenticated) { %>
-            <li>Welcome <strong><%= Resource.SecurityPrincipal.Name %></strong></li>
+            <li>Welcome <span class="userName"><%= Resource.SecurityPrincipal.Name %></span></li>
             <li><%= Xhtml.Link<LogoutResource>()["Log out"] %></li>
+            <li><%= Xhtml.Link<VictoryRecordingResource>()["Record victory"] %></li>
         <% } else { %>
             <li class="smallLoginForm">
                 <% using (scope(Xhtml.Form<LoginResource>().ID("loginForm").Method("post"))) { %>
@@ -26,11 +27,30 @@
                             .ID("loginPassword") %>
                     </div>
                     
+                    <div class="formElement formSubmission">
+                        <input type="submit" class="submit" value="Log in" />
+                    </div>
+                    
                 <% } %>
             </li>
             <li><%= Xhtml.Link<UserRegistrationResource>()["Register"] %></li>
         <% } %>
         </ul>
+        
+        <% if (Resource.RecentResults != null) { %>
+        
+        <ul class="recentResults">
+            <% foreach (var result in Resource.RecentResults) { %>
+            <li>
+                <span class="verb"><%= result.Verb() %></span>
+                <span class="score"><%= result.UserScore %> - <%= result.OpponentScore %></span>
+                against
+                <span class="opponent"><%= result.OpponentName %></span>
+            </li>
+            <% } %>            
+        </ul>
+        
+        <% } %>
         
     </div>
 </asp:Content>
