@@ -28,7 +28,7 @@
                     </div>
                     
                     <div class="formElement formSubmission">
-                        <input type="submit" class="submit" value="Log in" />
+                        <button class="submit">Log in</button>
                     </div>
                     
                 <% } %>
@@ -46,6 +46,7 @@
                 <span class="score"><%= result.UserScore %> - <%= result.OpponentScore %></span>
                 against
                 <span class="opponent"><%= result.OpponentName %></span>
+                <span class="date relativeDate"><%= result.MatchDate.ToJavascriptDateString() %></span>
             </li>
             <% } %>            
         </ul>
