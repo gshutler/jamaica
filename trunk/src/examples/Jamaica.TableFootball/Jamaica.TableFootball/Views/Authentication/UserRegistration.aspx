@@ -37,7 +37,7 @@
             </div>
             
             <div class="formElement formSubmission">
-                <input type="submit" class="submit" value="Register" />
+                <button class="submit">Register</button>
             </div>
             
         <% } %>

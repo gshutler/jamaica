@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="default.aspx" />
+    <Content Include="Script\date.js" />
     <Content Include="Script\jquery-1.3.2.min.js" />
     <Content Include="Script\site.js" />
     <Content Include="Style\site.css" />

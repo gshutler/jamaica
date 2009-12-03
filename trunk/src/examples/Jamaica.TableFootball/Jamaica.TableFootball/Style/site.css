@@ -3,7 +3,7 @@
 
 /* standard styles */
 body { font-family: Tahoma; font-size: 0.625em; line-height: 200%; margin: 1em; }
-p, label, li { font-size: 1.6em; }
+p, label, li, button { font-size: 1.6em; }
 h1, h2, h3, h4, h5 { font-family: Georgia; font-weight: bold; }
 h1 { font-size: 2.4em; margin: 1em 0; }
 h2 { font-size: 2em; margin: 0.5em 0; }
@@ -12,19 +12,93 @@ p, ul { margin-bottom: 1.2em; }
 li { margin-left: 24px; }
 
 /* home page */
-span.userName { font-weight: bold; }
+.userName,
+.recentResults .verb,
+.recentResults .opponent 
+{ 
+  font-weight: bold; 
+}
+
+.recentResults .date
+{
+  font-size: 0.8em;
+  color: #999;
+}
 
 /* form layout */
 div.formElement { margin-bottom: 10px; }
+
 div.formElement input,
-div.formElement select { font-size: 1.6em; padding: 3px; border-color: #888; border-style: solid; border-width: 1px; margin: 1px; outline: none; line-height: 100%; }
+div.formElement select 
+{ 
+  font-size: 1.6em; 
+  padding: 3px; 
+  border-color: #888; 
+  border-style: solid; 
+  border-width: 1px; 
+  margin: 1px; 
+  outline: none; 
+  line-height: 100%; 
+  -moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
 div.formElement input.focus,
-div.formElement select.focus { border-width: 2px; margin: 0; }
+div.formElement select.focus 
+{ 
+  border-width: 2px; 
+  margin: 0; 
+}
+
 div.formElement input.error { border-color: #F00; }
-div.formElement label { display: block; font-weight: bold; float: left; margin-right: 10px; margin-top: 4px; text-align: right; width: 100px; }
-div.formElement label.error { display: inline; float: none; text-align: left; color: #F00; }
+
+div.formElement label 
+{ 
+  display: block; 
+  font-weight: bold; 
+  float: left; 
+  margin-right: 10px; 
+  margin-top: 4px; 
+  text-align: right; 
+  width: 100px; 
+}
+
+div.formElement label.error 
+{ 
+  display: inline; 
+  float: none; 
+  text-align: left; 
+  color: #F00; 
+}
+
 div.formSubmission { margin-left: 110px; }
-input.submit { width: 80px; }
+
+.submit 
+{
+  outline: none;
+  width: 90px;
+	background-color: #666;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(120,120,120)), to(rgb(40,40,40)));
+	display: inline-block;
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	border: none;
+	margin: 1px 0;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	line-height: 1.4em;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;	
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	cursor: pointer;
+}
+
+.submit.focus
+{
+  -moz-box-shadow: 2px 2px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 2px 2px rgba(0,0,0,0.5);
+}
 
 /* home login form */
 .smallLoginForm div { font-size: 0.625em; }
