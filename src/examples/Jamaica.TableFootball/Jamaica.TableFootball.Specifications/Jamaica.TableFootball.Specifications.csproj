@@ -79,6 +79,7 @@
     <Compile Include="Authentication\Login\IncorrectPassword.cs" />
     <Compile Include="Authentication\Login\RequestingLoginPage.cs" />
     <Compile Include="Authentication\Login\NameNotRecognised.cs" />
+    <Compile Include="DateExtensions.cs" />
     <Compile Include="Home\ViewingTheHomePageAsAnAnonymousUser.cs" />
     <Compile Include="Home\ViewingTheHomePageAsAnAuthenticatedUser.cs" />
     <Compile Include="IntegrationSpecification.cs" />
@@ -96,6 +97,10 @@
     <Compile Include="RecordingScores\ScoringSelectLists\OpponentList.cs" />
     <Compile Include="RecordingScores\ScoringSelectLists\ScoreSelectList.cs" />
     <Compile Include="Reporting\Results\RecentResultsForAUser.cs" />
+    <Compile Include="Reporting\Statistics\LeagueTableOrdersByGoalsScoredAfterWinPercentage.cs" />
+    <Compile Include="Reporting\Statistics\LeagueTableOrdersByWinPercentage.cs" />
+    <Compile Include="Reporting\Statistics\CalculatingOnePlayersStats.cs" />
+    <Compile Include="SessionExtensions.cs" />
     <Compile Include="SpecificationExtensions.cs" />
   </ItemGroup>
   <ItemGroup>

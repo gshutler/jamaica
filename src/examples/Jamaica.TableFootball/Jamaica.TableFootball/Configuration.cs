@@ -27,11 +27,9 @@ namespace Jamaica.TableFootball
                 ResourceSpace.Uses.CookieAuthentication();
                 ResourceSpace.Uses.NHibernatePersistence();
 
-                ResourceSpace.Uses
-                    .CustomDependency<IScoringSelectListService, ScoringSelectListService>(DependencyLifetime.Transient);
-
-                ResourceSpace.Uses
-                    .CustomDependency<IResultReportingService, ResultReportingService>(DependencyLifetime.Transient);
+                RegisterTransientService<IScoringSelectListService, ScoringSelectListService>();
+                RegisterTransientService<IResultReportingService, ResultReportingService>();
+                RegisterTransientService<IStatisticsReportingService, StatisticsReportingService>();
 
                 ResourceSpace.Has.ResourcesOfType<HomeResource>()
                     .AtUri("/home").And.AtUri("/")
@@ -59,6 +57,11 @@ namespace Jamaica.TableFootball
             }
 
             MigrateDatabaseToLatestVersion();
+        }
+
+        static void RegisterTransientService<TInterface, TImplementation>() where TImplementation : TInterface
+        {
+            ResourceSpace.Uses.CustomDependency<TInterface, TImplementation>(DependencyLifetime.Transient);
         }
 
         static void MigrateDatabaseToLatestVersion()

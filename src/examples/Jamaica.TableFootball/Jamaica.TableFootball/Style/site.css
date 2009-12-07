@@ -116,3 +116,16 @@ div.formElement.watermark input:focus { background-color: #fff; }
 .victoryRecordForm .opponentSelect select,
 .victoryRecordForm .matchDateSelect select,
 .victoryRecordForm .opponentScoreSelect select { width: 180px; }
+
+/* league table */
+ol.leagueTable { width: 350px; }
+ol.leagueTable dt { display: none; }
+ol.leagueTable dd { display: inline-block; text-align: right; margin-left: 10px; }
+ol.leagueTable dd.user { width: 60px; text-align: left; }
+ol.leagueTable dd.wins,
+ol.leagueTable dd.losses { width: 25px; }
+ol.leagueTable dd.goalsScored,
+ol.leagueTable dd.goalsConceded { width: 35px; }
+ol.leagueTable dd.winPercentage { width: 50px; }
+ol.leagueTable li.odd { background-color: #eee; }
+ol.leagueTable li.even { background-color: #ddd; }

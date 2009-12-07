@@ -98,7 +98,9 @@
     <Compile Include="Recording\VictoryRecording\VictoryRecordingResource.cs" />
     <Compile Include="Recording\ScoringSelectListService.cs" />
     <Compile Include="Reporting\ResultReportingService.cs" />
+    <Compile Include="Reporting\StatisticsReportingService.cs" />
     <Compile Include="Reporting\UserRecentResult.cs" />
+    <Compile Include="Reporting\UserStatisticsSummary.cs" />
     <Compile Include="Xhtml\SelectList.cs" />
     <Compile Include="Xhtml\SelectListExtensions.cs" />
     <Compile Include="Xhtml\SelectListItem.cs" />

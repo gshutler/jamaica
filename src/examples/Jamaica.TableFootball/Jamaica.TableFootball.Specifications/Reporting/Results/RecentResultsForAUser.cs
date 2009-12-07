@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Jamaica.Security;
-using Jamaica.TableFootball.Core;
 using Jamaica.TableFootball.Core.Reporting;
 using Jamaica.Test;
 using NUnit.Framework;
@@ -18,27 +17,19 @@ namespace Jamaica.TableFootball.Specifications.Reporting.Results
 
         protected override void Given()
         {
-            session.Save(nathanTyson = new User("NathanTyson"));
-            session.Save(robEarnshaw = new User("RobEarnshaw"));
+            nathanTyson = session.SaveUser("NathanTyson");
+            robEarnshaw = session.SaveUser("RobEarnshaw");
 
-            session.Save(MatchResult(DateTime.Today, nathanTyson, 10, robEarnshaw, 7));
-            session.Save(MatchResult(DateTime.Today, robEarnshaw, 10, nathanTyson, 6));
-            session.Save(MatchResult(DateTime.Today, robEarnshaw, 10, nathanTyson, 7));
-            session.Save(MatchResult(DateTime.Today.AddDays(-1), nathanTyson, 10, robEarnshaw, 1));
-            session.Save(MatchResult(DateTime.Today.AddDays(-4), nathanTyson, 10, robEarnshaw, 7));
-            session.Save(MatchResult(DateTime.Today.AddDays(-5), nathanTyson, 10, robEarnshaw, 9));
-            session.Save(MatchResult(DateTime.Today.AddDays(-5), nathanTyson, 10, robEarnshaw, 4));
+            session.SaveMatchResult(DateTime.Today, nathanTyson, 10, robEarnshaw, 7);
+            session.SaveMatchResult(DateTime.Today, robEarnshaw, 10, nathanTyson, 6);
+            session.SaveMatchResult(DateTime.Today, robEarnshaw, 10, nathanTyson, 7);
+            session.SaveMatchResult(1.DaysAgo(), nathanTyson, 10, robEarnshaw, 1);
+            session.SaveMatchResult(4.DaysAgo(), nathanTyson, 10, robEarnshaw, 7);
+            session.SaveMatchResult(5.DaysAgo(), nathanTyson, 10, robEarnshaw, 9);
+            session.SaveMatchResult(5.DaysAgo(), nathanTyson, 10, robEarnshaw, 4);
 
             session.Flush();
             session.Clear();
-        }
-        
-        static MatchResult MatchResult(DateTime matchDate, User victor, int victorScore, User opponent, int opponentScore)
-        {
-            var victorParticipant = new Participant(victor, victorScore);
-            var opponentParticpant = new Participant(opponent, opponentScore);
-
-            return new MatchResult(matchDate, victorParticipant, opponentParticpant);
         }
 
         protected override void When()
