@@ -3,7 +3,7 @@
 
 /* standard styles */
 body { font-family: Tahoma; font-size: 0.625em; line-height: 200%; margin: 1em; }
-p, label, li, button { font-size: 1.6em; }
+p, label, li, button { font-size: 1.2em; }
 h1, h2, h3, h4, h5 { font-family: Georgia; font-weight: bold; }
 h1 { font-size: 2.4em; margin: 1em 0; }
 h2 { font-size: 2em; margin: 0.5em 0; }
@@ -31,7 +31,7 @@ div.formElement { margin-bottom: 10px; }
 div.formElement input,
 div.formElement select 
 { 
-  font-size: 1.6em; 
+  font-size: 1.4em; 
   padding: 3px; 
   border-color: #888; 
   border-style: solid; 
@@ -103,7 +103,7 @@ div.formSubmission { margin-left: 110px; }
 /* home login form */
 .smallLoginForm div { font-size: 0.625em; }
 .smallLoginForm div.formElement { display: inline; margin-right: 4px; position: relative; }
-.smallLoginForm div.formSubmission { display: inline; margin-left: 1px; }
+.smallLoginForm div.formSubmission { display: inline; margin-left: 1px; font-size: 0.8em; }
 
 /* form watermark */
 div.formElement.watermark { position: relative; }
@@ -112,20 +112,25 @@ div.formElement.watermark input { width: 100px; }
 div.formElement.watermark input:focus { background-color: #fff; }
 
 /* victory record form */
-.victoryRecordForm .myScore { font-size: 1.6em; font-weight: bold; display: block; float: left; margin-right: 10px; margin-top: 4px; text-align: right; width: 100px; }
+.victoryRecordForm .myScore { font-size: 1.2em; font-weight: bold; display: block; float: left; margin-right: 10px; margin-top: 4px; text-align: right; width: 100px; }
 .victoryRecordForm .opponentSelect select,
 .victoryRecordForm .matchDateSelect select,
 .victoryRecordForm .opponentScoreSelect select { width: 180px; }
 
 /* league table */
-ol.leagueTable { width: 350px; }
-ol.leagueTable dt { display: none; }
-ol.leagueTable dd { display: inline-block; text-align: right; margin-left: 10px; }
-ol.leagueTable dd.user { width: 60px; text-align: left; }
-ol.leagueTable dd.wins,
-ol.leagueTable dd.losses { width: 25px; }
-ol.leagueTable dd.goalsScored,
-ol.leagueTable dd.goalsConceded { width: 35px; }
-ol.leagueTable dd.winPercentage { width: 50px; }
-ol.leagueTable li.odd { background-color: #eee; }
-ol.leagueTable li.even { background-color: #ddd; }
+table.leagueTable { font-size: 1.2em; }
+table.leagueTable tr.currentUser { font-weight: bold; }
+table.leagueTable th,
+table.leagueTable td { padding-right: 10px; text-align: right; }
+table.leagueTable th.player,
+table.leagueTable td.player { width: 60px; text-align: left; }
+table.leagueTable th.position,
+table.leagueTable th.played,
+table.leagueTable th.won,
+table.leagueTable th.lost,
+table.leagueTable th.goalsScored,
+table.leagueTable th.goalsConceded { width: 20px; }
+table.leagueTable th.winPercentage { width: 40px; }
+table.leagueTable thead tr { background-color: #555; color: #fff; }
+table.leagueTable tbody tr.odd { background-color: #eee; }
+table.leagueTable tbody tr.even { background-color: #ddd; }

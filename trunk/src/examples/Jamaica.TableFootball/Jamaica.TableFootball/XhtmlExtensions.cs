@@ -25,5 +25,10 @@ namespace Jamaica.TableFootball
         {
             return HttpUtility.HtmlEncode(value);
         }
+
+        public static string TwoDecimalPlaces(this decimal value)
+        {
+            return value.ToString("N2");
+        }
     }
 }

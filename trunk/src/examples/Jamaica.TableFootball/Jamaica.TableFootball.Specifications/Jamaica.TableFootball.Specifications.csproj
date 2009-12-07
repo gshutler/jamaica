@@ -97,6 +97,7 @@
     <Compile Include="RecordingScores\ScoringSelectLists\OpponentList.cs" />
     <Compile Include="RecordingScores\ScoringSelectLists\ScoreSelectList.cs" />
     <Compile Include="Reporting\Results\RecentResultsForAUser.cs" />
+    <Compile Include="Reporting\Statistics\HavingNoResultsReportsWinPercentageOfZero.cs" />
     <Compile Include="Reporting\Statistics\LeagueTableOrdersByGoalsScoredAfterWinPercentage.cs" />
     <Compile Include="Reporting\Statistics\LeagueTableOrdersByWinPercentage.cs" />
     <Compile Include="Reporting\Statistics\CalculatingOnePlayersStats.cs" />
