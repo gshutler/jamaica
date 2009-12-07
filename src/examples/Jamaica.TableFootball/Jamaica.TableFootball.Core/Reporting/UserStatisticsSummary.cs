@@ -12,6 +12,8 @@ namespace Jamaica.TableFootball.Core.Reporting
             Losses = losses;
             GoalsScored = goalsScored;
             GoalsConceded = goalsConceded;
+            TotalGames = Wins + Losses;
+            SetWinPercentage();
         }
 
         public User User { get; private set; }
@@ -19,19 +21,13 @@ namespace Jamaica.TableFootball.Core.Reporting
         public int Losses { get; private set; }
         public int GoalsScored { get; private set; }
         public int GoalsConceded { get; private set; }
+        public int TotalGames { get; private set; }
+        public decimal WinPercentage { get; private set; }
 
-        public int TotalGames
+        void SetWinPercentage()
         {
-            get { return Wins + Losses; }
-        }
-
-        public decimal WinPercentage
-        {
-            get 
-            { 
-                return decimal.Round(
-                    decimal.Divide(Wins, TotalGames) * 100, 2); 
-            }
+            if (TotalGames == 0) return; // leave as zero
+            WinPercentage = decimal.Round(decimal.Divide(Wins, TotalGames) * 100, 2); 
         }
     }
 }

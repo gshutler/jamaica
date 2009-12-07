@@ -17,8 +17,8 @@
 
     $("input,select,button").focus(jamaica.ui.toggleFocusClass).blur(jamaica.ui.toggleFocusClass);
     $(".relativeDate").each(jamaica.dateHandling.convertTextToRelativeDate);
-    $("ol.leagueTable li:odd").each(function() { $(this).addClass("odd"); });
-    $("ol.leagueTable li:even").each(function() { $(this).addClass("even"); });
+    $("table.leagueTable tbody tr:odd").each(function() { $(this).addClass("odd"); });
+    $("table.leagueTable tbody tr:even").each(function() { $(this).addClass("even"); });
 });
 
 jamaica = {};

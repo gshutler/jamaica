@@ -63,26 +63,39 @@
         
             <h3>League table</h3>
             
-            <ol class="leagueTable">
-                <% foreach (var summary in Resource.LeagueTable) { %>
-                <li>
-                    <dl>
-                        <dt>Player</dt>
-                        <dd class="user"><%= summary.User.Name.HtmlEncode() %></dd>
-                        <dt>Wins</dt>
-                        <dd class="wins"><%= summary.Wins %></dd>
-                        <dt>Losses</dt>
-                        <dd class="losses"><%= summary.Losses %></dd>
-                        <dt>Goals scored</dt>
-                        <dd class="goalsScored"><%= summary.GoalsScored %></dd>
-                        <dt>Goals conceded</dt>
-                        <dd class="goalsConceded"><%= summary.GoalsConceded %></dd>
-                        <dt>Win percentage</dt>
-                        <dd class="winPercentage"><%= summary.WinPercentage %></dd>
-                    </dl>
-                </li>
-                <% } %>
-            </ol>        
+            <table class="leagueTable" cellpadding="0" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th class="position" title="Position"></th>
+                        <th class="player" title="Player">Player</th>
+                        <th class="played" title="Played">P</th>
+                        <th class="won" title="Won">W</th>
+                        <th class="lost" title="Lost">L</th>
+                        <th class="goalsScored" title="Goals scored">F</th>
+                        <th class="goalsConceded" title="Goals conceded">A</th>
+                        <th class="winPercentage" title="Win percentage">%</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% var position = 1;
+                   foreach (var summary in Resource.LeagueTable) { %>
+                    <% if (Resource.Authenticated && summary.User.Name == Resource.SecurityPrincipal.Name) { %>
+                    <tr class="currentUser">
+                    <% } else { %>
+                    <tr>                
+                    <% } %>
+                        <td class="position"><%= position++ %></td>
+                        <td class="player"><%= summary.User.Name.HtmlEncode() %></td>
+                        <td class="played"><%= summary.TotalGames %></td>
+                        <td class="wins"><%= summary.Wins %></td>
+                        <td class="losses"><%= summary.Losses %></td>
+                        <td class="goalsScored"><%= summary.GoalsScored %></td>
+                        <td class="goalsConceded"><%= summary.GoalsConceded %></td>
+                        <td class="winPercentage"><%= summary.WinPercentage.TwoDecimalPlaces() %></td>
+                    </tr>
+                    <% } %>
+                </tbody>
+            </table>           
             
         </div>
         
