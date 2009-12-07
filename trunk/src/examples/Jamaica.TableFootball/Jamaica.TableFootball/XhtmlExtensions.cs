@@ -1,4 +1,5 @@
 using System;
+using System.Web;
 using OpenRasta.Web.Markup.Modules;
 using OpenRasta.Web.Markup;
 
@@ -18,6 +19,11 @@ namespace Jamaica.TableFootball
         public static string ToJavascriptDateString(this DateTime date)
         {
             return date.ToString("ddd MMMM dd, yyyy");
+        }
+
+        public static string HtmlEncode(this string value)
+        {
+            return HttpUtility.HtmlEncode(value);
         }
     }
 }

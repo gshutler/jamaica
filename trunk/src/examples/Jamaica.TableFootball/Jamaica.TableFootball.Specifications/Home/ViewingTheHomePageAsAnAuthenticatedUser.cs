@@ -15,9 +15,11 @@ namespace Jamaica.TableFootball.Specifications.Home
         User user;
         OperationResult result;
         IEnumerable<UserRecentResult> recentResults;
+        List<UserStatisticsSummary> leagueTable;
 
         protected override void Given()
         {
+            leagueTable = new List<UserStatisticsSummary>();
             user = new User("NathanTyson");
             user.SetPassword("forest");
 
@@ -28,6 +30,10 @@ namespace Jamaica.TableFootball.Specifications.Home
             Dependency<IResultReportingService>()
                 .Stub(x => x.RecentResults(user))
                 .Return(recentResults);
+
+            Dependency<IStatisticsReportingService>()
+                .Stub(x => x.LeagueTable())
+                .Return(leagueTable);
         }
 
         protected override void When()
@@ -57,6 +63,12 @@ namespace Jamaica.TableFootball.Specifications.Home
         public void ShowsUsersMostRecentResults()
         {
             Verify(result.Response<HomeResource>().RecentResults, Is.SameAs(recentResults));
+        }
+
+        [Then]
+        public void LeagueTablePassed()
+        {
+            Verify(result.Response<HomeResource>().LeagueTable, Is.SameAs(leagueTable));
         }
     }
 }

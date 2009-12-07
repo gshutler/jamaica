@@ -7,14 +7,19 @@ namespace Jamaica.TableFootball.Core.Home
 {
     public class HomeResource
     {
-        public HomeResource(ISecurityPrincipal securityPrincipal, IEnumerable<UserRecentResult> recentResults)
+        public HomeResource(
+            ISecurityPrincipal securityPrincipal, 
+            IEnumerable<UserRecentResult> recentResults, 
+            IEnumerable<UserStatisticsSummary> leagueTable)
         {
             SecurityPrincipal = securityPrincipal;
             RecentResults = recentResults;
+            LeagueTable = leagueTable;
         }
 
-        public IEnumerable<UserRecentResult> RecentResults { get; private set; }
         public ISecurityPrincipal SecurityPrincipal { get; private set; }
+        public IEnumerable<UserRecentResult> RecentResults { get; private set; }
+        public IEnumerable<UserStatisticsSummary> LeagueTable { get; private set; }
 
         public bool Authenticated
         {
