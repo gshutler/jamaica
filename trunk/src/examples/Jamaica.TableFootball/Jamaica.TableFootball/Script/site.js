@@ -33,19 +33,18 @@ jamaica.ui = {
 jamaica.dateHandling = {
 		
 	relativeDateFrom: function(date) {		
-		var today = Date.today();
-		if (date.compareTo(today) > 0) { return "future"; } /* shouldn't happen */
-		if (date.equals(today)) { return "today"; }		
-		if (date.equals(today.add(-1).day())) { return "yesterday"; }
+		if (date.compareTo(Date.today()) > 0) { return "future"; } /* shouldn't happen */
+		if (date.equals(Date.today())) { return "today"; }		
+		if (date.equals(Date.today().add(-1).days())) { return "yesterday"; }
 		
 		for (var days = 2; days < 7; days++) {		
-			if (date.equals(today.add(-days).days())) { return days + " days ago"; }			
+			if (date.equals(Date.today().add(-days).days())) { return days + " days ago"; }			
 		}
 		
-		if (date.compareTo(today.add(-2).weeks()) > 0) { return "1 week ago"; }
+		if (date.compareTo(Date.today().add(-2).weeks()) > 0) { return "1 week ago"; }
 		
 		for (var week = 3; week < 5; week++) {
-			if (date.compareTo(today.add(-week).weeks()) > 0) { return (week - 1) + " weeks ago"; }
+			if (date.compareTo(Date.today().add(-week).weeks()) > 0) { return (week - 1) + " weeks ago"; }
 		}
 
 		return date.toString("d MMM yyyy");		
