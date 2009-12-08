@@ -2,6 +2,7 @@ using System;
 
 namespace Jamaica.TableFootball.Core.Authentication.Login
 {
+    [UriRegistration("/login")]
     public class LoginResource
     {
         public LoginResource()

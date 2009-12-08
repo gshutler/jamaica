@@ -4,10 +4,12 @@ using Jamaica.Security;
 using Jamaica.TableFootball.Core.Extensions;
 using Jamaica.TableFootball.Core.Home;
 using NHibernate;
+using OpenRasta.Security;
 using OpenRasta.Web;
 
 namespace Jamaica.TableFootball.Core.Recording.VictoryRecording
 {
+    [RequiresAuthentication]
     public class VictoryRecordingHandler : Handler
     {
         readonly ISecurityPrincipal securityPrincipal;

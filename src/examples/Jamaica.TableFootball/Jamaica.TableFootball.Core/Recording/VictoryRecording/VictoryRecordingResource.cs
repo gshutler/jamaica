@@ -3,6 +3,7 @@ using Jamaica.TableFootball.Core.Xhtml;
 
 namespace Jamaica.TableFootball.Core.Recording.VictoryRecording
 {
+    [UriRegistration("/victories/new")]
     public class VictoryRecordingResource
     {
         public SelectList Dates { get; set; }

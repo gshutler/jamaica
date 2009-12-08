@@ -5,6 +5,7 @@ using Jamaica.TableFootball.Core.Reporting;
 
 namespace Jamaica.TableFootball.Core.Home
 {
+    [UriRegistration("/home", "/")]
     public class HomeResource
     {
         public HomeResource(
