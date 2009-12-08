@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica", "Jamaica\Jamaica.csproj", "{AE957F64-0845-43B4-A7C3-B4842BC8A153}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.Test", "Jamaica.Test\Jamaica.Test.csproj", "{AC4B2384-7CD6-494C-88C4-2B7057E7865C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.Specifications", "Jamaica.Specifications\Jamaica.Specifications.csproj", "{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.NHibernate", "Jamaica.NHibernate\Jamaica.NHibernate.csproj", "{FA123068-C158-4F42-BA90-5C94B15EEDA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jamaica.NHibernate.Specifications", "Jamaica.NHibernate.Specifications\Jamaica.NHibernate.Specifications.csproj", "{1B2A70CB-E36A-4493-BE05-A1E55959773E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FE733186-33BF-46D3-91E5-A7CC555A7DA2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NHibernate", "NHibernate", "{1FC8CEDF-899D-4007-932F-8365CB6DAAE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4B2384-7CD6-494C-88C4-2B7057E7865C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA123068-C158-4F42-BA90-5C94B15EEDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA123068-C158-4F42-BA90-5C94B15EEDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA123068-C158-4F42-BA90-5C94B15EEDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA123068-C158-4F42-BA90-5C94B15EEDA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B2A70CB-E36A-4493-BE05-A1E55959773E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2A70CB-E36A-4493-BE05-A1E55959773E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2A70CB-E36A-4493-BE05-A1E55959773E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2A70CB-E36A-4493-BE05-A1E55959773E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE957F64-0845-43B4-A7C3-B4842BC8A153} = {FE733186-33BF-46D3-91E5-A7CC555A7DA2}
+		{2E3EF6DF-FE17-42A4-A5D1-B64C4D67BE62} = {FE733186-33BF-46D3-91E5-A7CC555A7DA2}
+		{FA123068-C158-4F42-BA90-5C94B15EEDA2} = {1FC8CEDF-899D-4007-932F-8365CB6DAAE0}
+		{1B2A70CB-E36A-4493-BE05-A1E55959773E} = {1FC8CEDF-899D-4007-932F-8365CB6DAAE0}
+	EndGlobalSection
+EndGlobal
