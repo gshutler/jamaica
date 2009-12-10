@@ -13,6 +13,7 @@ using Jamaica.TableFootball.Core.Reporting;
 using NHibernate;
 using OpenRasta.Configuration;
 using Jamaica.Configuration;
+using OpenRasta.Configuration.Fluent;
 using OpenRasta.DI;
 using OpenRasta.Diagnostics;
 
@@ -51,9 +52,9 @@ namespace Jamaica.TableFootball
                 //    .HandledBy<LoginHandler>()
                 //    .RenderedByAspx("~/Views/Authentication/Login.aspx");
 
-                //ResourceSpace.Has.ResourcesOfType<LogoutResource>()
-                //    .AtUri("/logout")
-                //    .HandledBy<LogoutHandler>();
+                ResourceSpace.Has.ResourcesOfType<LogoutResource>()
+                    .AtUri("/logout")
+                    .HandledBy<LogoutHandler>();
 
                 //ResourceSpace.Has.ResourcesOfType<VictoryRecordingResource>()
                 //    .AtUri("/record/victory")
@@ -69,7 +70,9 @@ namespace Jamaica.TableFootball
             var assembly = typeof (T).Assembly;
 
             var conventionRegistrations = assembly.GetTypes()
-                .Where(type => ConventionRegistration.GetAttribute(type) != null)
+                .Where(type => type.Name.EndsWith("Handler"))
+                .Where(type => !type.IsAbstract)
+                .Where(ConventionRegistration.IsNotIgnored)
                 .Select(type => new ConventionRegistration(type, assembly));
 
             foreach (var resource in conventionRegistrations)
@@ -92,32 +95,37 @@ namespace Jamaica.TableFootball
 
         class ConventionRegistration
         {
-            readonly Type type;
+            readonly Type handlerType;
             readonly Assembly assembly;
-            readonly UriRegistrationAttribute attribute;
 
-            public ConventionRegistration(Type type, Assembly assembly)
+            public ConventionRegistration(Type handlerType, Assembly assembly)
             {
-                this.type = type;
+                this.handlerType = handlerType;
                 this.assembly = assembly;
-                attribute = GetAttribute(type);
             }
 
-            public static UriRegistrationAttribute GetAttribute(Type type)
+            public static bool IsNotIgnored(ICustomAttributeProvider type)
             {
-                return type.GetCustomAttributes(typeof(UriRegistrationAttribute), false).FirstOrDefault() as UriRegistrationAttribute;
+                return !type.GetCustomAttributes(typeof (IgnoreConventionAttribute), false).Any();
             }
 
             public void Register()
             {
-                var registration = ResourceSpace.Has.ResourcesOfType(type);
-                var handlerType = assembly.GetType(type.FullName.Replace("Resource", "Handler"));
+                var resourceType = assembly.GetType(handlerType.FullName.Replace("Handler", "Resource"));
+                var registration = ResourceSpace.Has.ResourcesOfType(resourceType);
 
-                var uriDefinition = registration.AtUri(attribute.Uri);
+                var uris = handlerType.GetCustomAttributes(typeof (UriAttribute), false).Cast<UriAttribute>();
 
-                foreach (var uri in attribute.AlternateUris)
+                IUriDefinition uriDefinition = null;
+
+                if (!uris.Any())
                 {
-                    uriDefinition.And.AtUri(uri);
+                    uriDefinition = registration.AtUri("/" + handlerType.Name.Replace("Handler", "").ToLower());
+                }
+
+                foreach (var uri in uris)
+                {
+                    uriDefinition = registration.AtUri(uri.Uri);
                 }
 
                 var handlerDefinition = uriDefinition.HandledBy(handlerType);
@@ -127,7 +135,7 @@ namespace Jamaica.TableFootball
 
             string ViewPath()
             {
-                var uriPath = type.Namespace
+                var uriPath = handlerType.Namespace
                     .Replace(assembly.GetName().Name, "")
                     .Replace(".", "/");
 

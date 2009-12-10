@@ -5,6 +5,7 @@ using OpenRasta.Web;
 
 namespace Jamaica.TableFootball.Core.Authentication.Logout
 {
+    [IgnoreConvention]
     public class LogoutHandler : Handler
     {
         readonly ICookieAuthenticationService cookieAuthenticationService;
