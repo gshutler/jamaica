@@ -10,6 +10,7 @@ using OpenRasta.Web;
 namespace Jamaica.TableFootball.Core.Recording.VictoryRecording
 {
     [RequiresAuthentication]
+    [Uri("/victories/new")]
     public class VictoryRecordingHandler : Handler
     {
         readonly ISecurityPrincipal securityPrincipal;

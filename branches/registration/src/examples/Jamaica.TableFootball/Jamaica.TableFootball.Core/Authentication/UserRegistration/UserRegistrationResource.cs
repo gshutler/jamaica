@@ -3,7 +3,6 @@ using Jamaica.TableFootball.Core.Extensions;
 
 namespace Jamaica.TableFootball.Core.Authentication.UserRegistration
 {
-    [UriRegistration("/registration")]
     public class UserRegistrationResource
     {
         public string Name { get; set;}

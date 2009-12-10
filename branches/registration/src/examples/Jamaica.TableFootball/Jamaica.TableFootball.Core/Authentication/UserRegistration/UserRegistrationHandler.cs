@@ -7,6 +7,7 @@ using OpenRasta.Web;
 
 namespace Jamaica.TableFootball.Core.Authentication.UserRegistration
 {
+    [Uri("/registration")]
     public class UserRegistrationHandler : Handler
     {
         readonly ISession session;

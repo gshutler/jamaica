@@ -6,6 +6,8 @@ using OpenRasta.Web;
 
 namespace Jamaica.TableFootball.Core.Home
 {
+    [Uri("/")]
+    [Uri("/home")]
     public class HomeHandler : Handler
     {
         readonly ISecurityPrincipal securityPrincipal;
