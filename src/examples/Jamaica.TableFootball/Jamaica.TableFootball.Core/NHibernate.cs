@@ -1,4 +1,5 @@
 using System;
+using System.Configuration;
 using System.IO;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
@@ -12,8 +13,16 @@ namespace Jamaica.TableFootball.Core
     {
         public static string ConnectionString()
         {
-            return string.Format("Data Source={0};Version=3;",
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "sqlite.db"));
+            var connectionSetting = ConfigurationManager.ConnectionStrings["TableFootball"];
+
+            if (connectionSetting == null)
+            {
+                return string.Format("Data Source={0};Version=3;",
+                                     Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
+                                                  "tablefootball.db"));
+            }
+
+            return connectionSetting.ConnectionString;
         }
 
         public static ISessionFactory CreateSessionFactory()
