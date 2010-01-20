@@ -85,7 +85,7 @@ namespace Jamaica.TableFootball.Core.Recording.VictoryRecording
         void AttachSelectLists(VictoryRecordingResource resource)
         {
             resource.Dates = scoringSelectListService.MatchDates();
-            resource.Opponents = scoringSelectListService.Opponents(securityPrincipal);
+            resource.Opponents = scoringSelectListService.OtherPlayers(securityPrincipal);
             resource.Scores = scoringSelectListService.PossibleOpponentScores();
         }
     }

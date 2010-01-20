@@ -1,9 +1,11 @@
 using System;
 using Jamaica.NHibernate.Configuration;
+using Jamaica.TableFootball.Core;
 using Jamaica.TableFootball.Core.Authentication.Login;
 using Jamaica.TableFootball.Core.Authentication.Logout;
 using Jamaica.TableFootball.Core.Authentication.UserRegistration;
 using Jamaica.TableFootball.Core.Home;
+using Jamaica.TableFootball.Core.PasswordReset;
 using Jamaica.TableFootball.Core.Recording;
 using Jamaica.TableFootball.Core.Recording.VictoryRecording;
 using Jamaica.TableFootball.Core.Reporting;
@@ -28,6 +30,7 @@ namespace Jamaica.TableFootball
                 ResourceSpace.Uses.NHibernatePersistence();
 
                 RegisterTransientService<IScoringSelectListService, ScoringSelectListService>();
+                RegisterTransientService<IUserSelectListService, UserSelectListService>();
                 RegisterTransientService<IResultReportingService, ResultReportingService>();
                 RegisterTransientService<IStatisticsReportingService, StatisticsReportingService>();
 
@@ -54,6 +57,11 @@ namespace Jamaica.TableFootball
                     .AtUri("/record/victory")
                     .HandledBy<VictoryRecordingHandler>()
                     .RenderedByAspx("~/Views/Recording/VictoryRecording.aspx");
+
+                ResourceSpace.Has.ResourcesOfType<PasswordResetResource>()
+                    .AtUri("/aybabtu")
+                    .HandledBy<PasswordResetHandler>()
+                    .RenderedByAspx("~/Views/PasswordReset.aspx");
             }
 
             MigrateDatabaseToLatestVersion();
