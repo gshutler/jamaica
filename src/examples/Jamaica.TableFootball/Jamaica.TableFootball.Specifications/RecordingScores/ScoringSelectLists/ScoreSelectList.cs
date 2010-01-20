@@ -21,16 +21,9 @@ namespace Jamaica.TableFootball.Specifications.RecordingScores.ScoringSelectList
         }
 
         [Then]
-        public void FirstItemIsDefault()
+        public void NumbersZeroToNine()
         {
-            Verify(scores.Items.First().Display, Is.EqualTo("Select score"));
-            Verify(scores.Items.First().Value, Is.EqualTo(""));
-        }
-
-        [Then]
-        public void RemainingTenAreNumbersZeroToNine()
-        {
-            var selectItems = scores.Items.Skip(1).ToList();
+            var selectItems = scores.Items.ToList();
 
             for (var score = 0; score < 10; score++)
             {

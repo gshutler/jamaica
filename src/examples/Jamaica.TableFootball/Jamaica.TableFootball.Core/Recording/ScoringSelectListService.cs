@@ -9,7 +9,7 @@ namespace Jamaica.TableFootball.Core.Recording
 {
     public interface IScoringSelectListService
     {
-        SelectList Opponents(ISecurityPrincipal user);
+        SelectList OtherPlayers(ISecurityPrincipal user);
         SelectList PossibleOpponentScores();
         SelectList MatchDates();
     }
@@ -23,24 +23,14 @@ namespace Jamaica.TableFootball.Core.Recording
             this.session = session;
         }
 
-        public SelectList Opponents(ISecurityPrincipal user)
+        public SelectList OtherPlayers(ISecurityPrincipal user)
         {
             var opponents = session.CreateCriteria<User>()
                 .Add(Restrictions.Not(Restrictions.Eq("Name", user.Name)))
                 .AddOrder(Order.Asc("Name"))
                 .List<User>();
 
-            return new SelectList(OpponentsAsSelectListItems(opponents));
-        }
-
-        static IEnumerable<SelectListItem> OpponentsAsSelectListItems(IEnumerable<User> opponents)
-        {
-            yield return new SelectListItem("Select opponent", "");
-
-            foreach (var user in opponents)
-            {
-                yield return new SelectListItem(user.Name);
-            }
+            return new SelectList(opponents.AsSelectListItems());
         }
 
         public SelectList PossibleOpponentScores()
@@ -50,8 +40,6 @@ namespace Jamaica.TableFootball.Core.Recording
 
         static IEnumerable<SelectListItem> ScoreSelectListItems()
         {
-            yield return new SelectListItem("Select score", "");
-
             for (var score = 0; score < 10; score++)
             {
                 yield return new SelectListItem(score.ToString());

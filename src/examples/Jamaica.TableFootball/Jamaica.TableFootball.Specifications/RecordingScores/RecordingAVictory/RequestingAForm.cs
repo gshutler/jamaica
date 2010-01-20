@@ -28,7 +28,7 @@ namespace Jamaica.TableFootball.Specifications.RecordingScores.RecordingAVictory
             InjectDependency(user);
 
             Dependency<IScoringSelectListService>()
-                .Stub(x => x.Opponents(user))
+                .Stub(x => x.OtherPlayers(user))
                 .Return(opponentList);
 
             Dependency<IScoringSelectListService>()

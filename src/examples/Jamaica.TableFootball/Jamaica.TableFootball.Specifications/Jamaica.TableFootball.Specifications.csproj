@@ -83,18 +83,21 @@
     <Compile Include="Home\ViewingTheHomePageAsAnAnonymousUser.cs" />
     <Compile Include="Home\ViewingTheHomePageAsAnAuthenticatedUser.cs" />
     <Compile Include="IntegrationSpecification.cs" />
+    <Compile Include="PasswordResets\SettingAPassword.cs" />
+    <Compile Include="PasswordResets\ViewingThePasswordResetPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Authentication\UserRegistration\RegistrationDetailsAreValid.cs" />
     <Compile Include="Authentication\UserRegistration\RegistrationDetailsHaveAnIncorrectPasswordConfirmation.cs" />
     <Compile Include="Authentication\UserRegistration\RegistrationDetailsAreMissingAPassword.cs" />
     <Compile Include="Authentication\UserRegistration\RegistrationDetailsAreMissingAName.cs" />
     <Compile Include="Authentication\UserRegistration\WantToRegisterANewUser.cs" />
+    <Compile Include="RecordingScores\RecordingADoublesVictory\RequestingAForm.cs" />
     <Compile Include="RecordingScores\RecordingAVictory\NoOpponentSelected.cs" />
     <Compile Include="RecordingScores\RecordingAVictory\NoScoreSelectedForTheOpponent.cs" />
     <Compile Include="RecordingScores\RecordingAVictory\RequestingAForm.cs" />
     <Compile Include="RecordingScores\RecordingAVictory\ValidSubmission.cs" />
     <Compile Include="RecordingScores\ScoringSelectLists\MatchDateList.cs" />
-    <Compile Include="RecordingScores\ScoringSelectLists\OpponentList.cs" />
+    <Compile Include="RecordingScores\ScoringSelectLists\OtherPlayersList.cs" />
     <Compile Include="RecordingScores\ScoringSelectLists\ScoreSelectList.cs" />
     <Compile Include="Reporting\Results\RecentResultsForAUser.cs" />
     <Compile Include="Reporting\Statistics\HavingNoResultsReportsWinPercentageOfZero.cs" />
@@ -103,6 +106,7 @@
     <Compile Include="Reporting\Statistics\CalculatingOnePlayersStats.cs" />
     <Compile Include="SessionExtensions.cs" />
     <Compile Include="SpecificationExtensions.cs" />
+    <Compile Include="UserSelectLists\AllUsersList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jamaica.TableFootball.Core\Jamaica.TableFootball.Core.csproj">

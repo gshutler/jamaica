@@ -14,7 +14,7 @@
         
             <div class="formElement opponentSelect">
                 <label for="opponentSelect">Beat</label>
-                <%= Xhtml.Select(() => Resource.OpponentId, Resource.Opponents).ID("opponentSelect")%>
+                <%= Xhtml.Select(() => Resource.OpponentId, Resource.Opponents, "Select opponent").ID("opponentSelect")%>
             </div>
             
             <div class="formElement matchDateSelect">
@@ -24,7 +24,7 @@
         
             <div class="formElement opponentScoreSelect">
                 <span class="myScore">10 -</span>
-                <%= Xhtml.Select(() => Resource.OpponentScore, Resource.Scores).ID("opponentScoreSelect")%>
+                <%= Xhtml.Select(() => Resource.OpponentScore, Resource.Scores, "Select score").ID("opponentScoreSelect")%>
             </div>
             
             <div class="formElement formSubmission">
