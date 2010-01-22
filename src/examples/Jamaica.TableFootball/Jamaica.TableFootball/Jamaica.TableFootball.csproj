@@ -23,6 +23,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>1591</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -107,7 +108,7 @@
     <Compile Include="XhtmlExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Views\HomeView.Master" />
+    <Content Include="Views\HomeView.Master" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Jamaica.TableFootball.Core\Jamaica.TableFootball.Core.csproj">
