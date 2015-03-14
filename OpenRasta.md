@@ -1,0 +1,1 @@
+[OpenRasta](http://www.openrasta.com) is a resource-oriented framework for .NET enabling easy ReST-ful development of web sites and services. [OpenRasta](http://www.openrasta.com) is designed to run on .net 2.0 and above, and can co-exist peacefully with your existing ASP.NET and WCF deployments.
